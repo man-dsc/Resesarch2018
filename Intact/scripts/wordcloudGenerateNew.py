@@ -12,7 +12,7 @@ from collections import defaultdict
 
 
 importDates = ['Jul']
-inputPath = "C:/Users/Summer16/Documents/BCMAPFEAT/data_intact.csv"
+inputPath = "C:/Users/Summer16/Documents/Intact/BCData0724.csv"
 imagePath = 'C:/Users/Summer16/Documents/BC.png'
 stopWords = stopwords.words('english')
 
@@ -20,12 +20,12 @@ def csvCreate(inputList):
     if not os.path.exists('C:/Users/Summer16/My Documents/BCMAPFEAT/'):
         os.makedirs('C:/Users/Summer16/My Documents/BCMAPFEAT/')
     
-    if not os.path.exists('C:/Users/Summer16/My Documents/BCMAPFEAT/count.csv'):
-        f = open('C:/Users/Summer16/My Documents/BCMAPFEAT/count.csv', "w")
+    if not os.path.exists('C:/Users/Summer16/My Documents/Intact/temp_count.csv'):
+        f = open('C:/Users/Summer16/My Documents/Intact/temp_count.csv',  "wb")
         f.close()
     
-    with open('C:/Users/Summer16/My Documents/BCMAPFEAT/count.csv', "wt", encoding="utf-8") as f:
-        writer = csv.writer(f)
+    with open('C:/Users/Summer16/My Documents/Intact/temp_count.csv', "w", encoding="utf-8") as f:
+        writer = csv.writer(f, lineterminator = '\n')
         writer.writerows(inputList)    
 
 def extractTweets(inputPath): 
@@ -44,6 +44,8 @@ def extractTweets(inputPath):
         else:
             pass
     
+    print(len(extract))
+    '''
     massiveString = ''
     
     for element in extract:
@@ -60,7 +62,7 @@ def extractTweets(inputPath):
     
     massiveList = massiveString.split(' ')
     newMassiveList = []
-    forbid = ['fire', 'wildfire', 'rt', 'o', 'one', 'see', 'sure', 'to', 'rock', 'lit', 'fires', 'now', '&', 'new', 'via', 'can', 'need', 'order']
+    forbid = ['fire', 'the', 'we', 'for', 'on', 'and', 'by', 'in', 'have', 'at', 'you', 'those', 'our', 'an', 'a', 'wildfire', 'rt', 'o', 'one', 'see', 'sure', 'to', 'rock', 'lit', 'fires', 'now', '&', 'new', 'via', 'can', 'need', 'order']
     for element in massiveList:
         element = element.lower()
         if 'http' not in element and 'amp' not in element and element not in forbid: 
@@ -72,7 +74,9 @@ def extractTweets(inputPath):
     
     for key in words:
         count.append([key, words[key]])
-    
+    count.sort(key = lambda x:x[1])
+    count = count[::-1]
+    #print(count)
     csvCreate(count)
     
     newMassiveString = ''
@@ -82,8 +86,9 @@ def extractTweets(inputPath):
         newMassiveString += element + ' '
     
     newMassiveString.strip()
-    
+
     return newMassiveString
+    '''
 
 def grey_color_func(word, font_size, position, orientation, random_state=None,
                     **kwargs):
@@ -99,10 +104,11 @@ def generateWordCloud(imagePath, inputPath):
     default_colors = wc.to_array()
     plt.imshow(default_colors,
                interpolation="bilinear")
-    wc.to_file("BCfire.png")
+    wc.to_file('C:/Users/Summer16/My Documents/Intact/temp.png')
 
 if __name__ == "__main__":
-    generateWordCloud(imagePath, inputPath)
+    #generateWordCloud(imagePath, inputPath)
+    extractTweets(inputPath)
     '''
     l, c = extractTweets(inputPath)
     
