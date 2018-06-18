@@ -28,7 +28,7 @@ TRAININGSET_FILENAME = 'trainingSet.csv'
 
 
 def processFile(filename):
-    print 'Processing {}...'.format(filename)
+    print('Processing {}...'.format(filename))
     data = open(INPUT_PATH + filename, 'rb')
     reader = csv.reader(data)
     info = list(reader)
@@ -36,6 +36,7 @@ def processFile(filename):
     tweets = []
     results = []
     for i in range(len(info)):
+        print len(info[i])
         tweet = preProcess(info[i][0])
         if tweet:
             # Map the words into their dictionary form
@@ -113,7 +114,7 @@ def lemmatize(tweet):
 
 
 def process():
-    print ''
+    print('')
     if os.path.exists(OUTPUT_PATH):
         shutil.rmtree(OUTPUT_PATH)
     os.makedirs(OUTPUT_PATH)

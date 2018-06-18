@@ -36,14 +36,14 @@ def buildTrainingSet():
 
 def validate(trainingSet):
     #Displays as (accuracy, precision, recall, F1, stdev)
-    print '\n10-fold cross validation results on training set:'
-    print kfoldcv(NB, trainingSet, folds=10)
-    print ''
+    print('\n10-fold cross validation results on training set:')
+    print(kfoldcv(NB, trainingSet, folds=10))
+    print('')
     return kfoldcv(NB, trainingSet, folds=10)
 
 
 def classifyTweets(filename, trainingSet):
-    print 'Classifying {}...\n'.format(filename)
+    print('Classifying {}...\n'.format(filename))
     data = open('{}/processed{}'.format(INPUT_PATH, filename.capitalize()), 'rb')
     reader = csv.reader(data)
     info = list(reader)

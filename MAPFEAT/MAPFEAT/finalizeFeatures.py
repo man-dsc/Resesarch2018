@@ -18,7 +18,7 @@ OUTPUT_PATH = 'output'
 
 
 def finalize(sharedBetween):
-	print 'Finalizing results by finding common features between apps...\n'
+	print('Finalizing results by finding common features between apps...\n')
 
 	vect = TfidfVectorizer(min_df=2)
 

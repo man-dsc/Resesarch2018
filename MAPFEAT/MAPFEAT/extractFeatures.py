@@ -20,7 +20,7 @@ OUTPUT_PATH = 'output/features'
 
 
 def extract():
-    print 'Extracting features from app descriptions...\n'
+    print('Extracting features from app descriptions...\n')
     if os.path.exists(OUTPUT_PATH):
         shutil.rmtree(OUTPUT_PATH)
     os.makedirs(OUTPUT_PATH)

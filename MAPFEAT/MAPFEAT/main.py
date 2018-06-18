@@ -18,7 +18,7 @@ if __name__ == "__main__":
     appLimit = input("Enter the maximum number of apps returned by each app store search query: ")
     sharedBetween = input("Enter the minimum number of apps per query that should share each feature: ")
 
-    print '\n-------------------------------------------------------------\n'
+    print('\n-------------------------------------------------------------\n')
 
     if os.path.exists(OUTPUT_PATH):
         shutil.rmtree(OUTPUT_PATH)
@@ -33,6 +33,6 @@ if __name__ == "__main__":
     extractFeatures.extract()
     finalizeFeatures.finalize(sharedBetween)
 
-    print '\n-------------------------------------------------------------\n'
+    print ('\n-------------------------------------------------------------\n')
 
     #validateResults.validate()

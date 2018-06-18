@@ -89,7 +89,7 @@ def powerset(s):
 
 
 def search(appLimit):
-    print 'Searching the app store...\n'
+    print('Searching the app store...\n')
 
     if os.path.exists(OUTPUT_PATH):
         shutil.rmtree(OUTPUT_PATH)
