@@ -36,7 +36,7 @@ def processFile(filename):
     tweets = []
     results = []
     for i in range(len(info)):
-        print len(info[i])
+        print(info[i])
         tweet = preProcess(info[i][0])
         if tweet:
             # Map the words into their dictionary form
