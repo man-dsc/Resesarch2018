@@ -1,0 +1,18 @@
+APS - Measures Pollution,"• Oaknet application is pollution level measurement app which gives information of pollution levels of all cities in India.
+• In that application one section present at homepage called UV index
+which gives the risk of UV rays in that particular cities based on the risk
+of harm it is calculated in different category like “Low”, ”Moderate”,
+”High”, ”Very high”, ”Extreme”.
+• In UV index section the map of India displayed with cities showing
+yellow dots, after clicking the yellow dot of a particular city it’s showing
+the UV index and Risk of Harm of that city.
+• Another section on homepage is Pollution index which shows the
+pollution level of particular cities, categorized by pollution index
+numbers and Risk of harm like “Good” ,”Moderate, “Unhealthy”,
+“Hazardous”.
+• On clicking the dot of particular city it shows detail chart showing
+information about Air compound, Average, Max Min, station.
+• Other function is Risk score in that it shows users present city risk score
+whether it’s on No risk, Moderate risk or High risk.
+• There is one section in the app called Tips for skin which gives user tips
+for healthy skin.","[['user', 'gives'], ['calculated', 'different'], ['based', 'risk'], ['categorized', 'pollution'], ['index', 'pollution'], ['level', 'measurement'], ['pollution', 'level'], ['levels', 'pollution'], ['information'], ['dots', 'yellow'], ['users'], ['city', 'particular'], ['cities', 'particular'], []]","[['tips', 'skin', 'tips', 'healthy', 'skin'], ['category', 'harm'], ['harm', 'cities'], ['index', 'cities'], ['numbers', 'shows', 'index', 'gives', 'risk'], ['app', 'pollution'], ['application', 'shows'], ['information', 'cities'], ['showing', 'gives', 'chart', 'pollution', 'app', 'gives', 'information'], ['clicking', 'showing', 'clicking', 'yellow', 'dot'], ['city', 'score', 'present', 'shows'], ['dot', 'shows'], ['rays', 'level'], ['function', 'section', 'Other', 'station', 'homepage', 'present']]"
