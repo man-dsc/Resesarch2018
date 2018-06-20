@@ -28,14 +28,22 @@ TRAININGSET_FILENAME = 'trainingSet.csv'
 
 
 def processFile(filename):
-    print 'Processing {}...'.format(filename)
+    print('Processing {}...'.format(filename))
     data = open(INPUT_PATH + filename, 'rb')
     reader = csv.reader(data)
     info = list(reader)
 
     tweets = []
     results = []
+    if filename == DATASET_FILENAME:
+        newinfo = []
+        for i in range(len(info)):
+            
+            newinfo.append([info[i][0], ''])
+        info = newinfo
+        #del newinfo
     for i in range(len(info)):
+        #print(info[i])
         tweet = preProcess(info[i][0])
         if tweet:
             # Map the words into their dictionary form
@@ -51,6 +59,7 @@ def processFile(filename):
 
     
 def preProcess(tweet):
+    #print(tweet)
     tweet = re.sub(r'(?:\@|https?\://)\S+', ' ', tweet)
     tweet = re.sub(r'(?:\#+[\w_]+[\w\'_\-]*[\w_]+)', ' ', tweet)
     tweet = re.sub(r'<quote>', ' ', tweet)
@@ -59,7 +68,7 @@ def preProcess(tweet):
     tweet = re.sub(r'&amp', ' ', tweet)
     tweet = re.sub(r'&gt', ' ', tweet)
     tweet = re.sub(r'\d+', ' ', tweet)
-
+    tweet = tweet.replace("RT", '')
     tweet = tweet.lower()
 
     tweet = tweet.replace("&quot;", '"')
@@ -68,7 +77,9 @@ def preProcess(tweet):
     tweet = tweet.replace("&lt;", '<')
     tweet = tweet.replace("\\'", "'")
 
-    chars = [',',' ','"','*',')','(','"',"'",'%','|','~','=',';',':','?','!','.','$','%','&','+','/','^',' - ','@','_','\\n','\\r',"\\'",'&;','&#','\\','#','>','<', 'RT ']
+    tweet = tweet.replace('\'', '')
+
+    chars = [',',' ','"','*',')','(','"',"'",'%','|','~','=',';',':','?','!','.','$','%','&','+','/','^',' - ','@','_','\\n','\\r',"\\'",'&;','&#','\\','#','>','<']
     for char in chars:
         tweet = tweet.replace(char, ' ');
 
@@ -113,7 +124,7 @@ def lemmatize(tweet):
 
 
 def process():
-    print ''
+    print('')
     if os.path.exists(OUTPUT_PATH):
         shutil.rmtree(OUTPUT_PATH)
     os.makedirs(OUTPUT_PATH)
