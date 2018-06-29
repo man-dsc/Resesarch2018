@@ -223,12 +223,11 @@ Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrp
 1530297433553	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\dicke\\AppData\\Local\\Temp\\rust_mozprofile.I6XERVqvfmdh"
 1530297435914	Marionette	INFO	Listening on port 51584
 1530297436473	Marionette	WARN	TLS certificate errors will be ignored for this session
-1530297506288	geckodriver	INFO	geckodriver 0.21.0
-1530297506288	geckodriver	INFO	Listening on 127.0.0.1:51644
-1530297509367	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\dicke\\AppData\\Local\\Temp\\rust_mozprofile.tWddFWKgkgIQ"
-1530297511673	Marionette	INFO	Listening on port 51653
-1530297512339	Marionette	WARN	TLS certificate errors will be ignored for this session
 Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: https://static-media-prod-cdn.sumo.mozilla.net/static/build/common-min.4d86858ec129.js, line 10: Error: Error retrieving geoip data
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-36116321-2&l=dataLayer, line 68: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-36116321-2&l=dataLayer, line 68: unreachable code after return statement
+icke\AppData\Local\openvr\openvrpaths.vrpath
 [Child 5176, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 [Child 5176, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
@@ -281,3 +280,291 @@ Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrp
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1530302035009	geckodriver	INFO	geckodriver 0.21.0
+1530302035018	geckodriver	INFO	Listening on 127.0.0.1:53711
+1530302037955	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\dicke\\AppData\\Local\\Temp\\rust_mozprofile.M6XSTl86pXk5"
+[GFX1-]: Failed to connect GPU process
+[GFX1-]: [D3D11] failed to get compositor device.
+[GFX1-]: [D3D11] Failed to init compositor with reason: FEATURE_FAILURE_D3D11_NO_DEVICE
+[GFX1-]: [D3D11] failed to get compositor device.
+[GFX1-]: [D3D11] Failed to init compositor with reason: FEATURE_FAILURE_D3D11_NO_DEVICE
+[GFX1-]: Could not get a DXGI adapter
+1530302053044	Marionette	INFO	Listening on port 53719
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 4812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 4812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1530302053265	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Could not get a DXGI adapter
+[GFX1-]: Could not get a DXGI adapter
+[GFX1-]: Could not get a DXGI adapter
+1530302293954	geckodriver	INFO	geckodriver 0.21.0
+1530302293962	geckodriver	INFO	Listening on 127.0.0.1:53832
+1530302296901	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\dicke\\AppData\\Local\\Temp\\rust_mozprofile.uam3mRapEle7"
+1530302301790	Marionette	INFO	Listening on port 53840
+1530302302269	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8876, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8876, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 9268, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: , line 0: uncaught exception: Invalid /api/body response
+JavaScript error: , line 0: uncaught exception: Invalid /api/body response
+[Child 5380, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: https://static.digg.com/static/fe/3eb69f/js/external/backbone/1.0.0/backbone-min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: https://mashable.com/2015/08/02/google-plus-history/, line 5: SyntaxError: expected expression, got ','
+JavaScript error: https://a.teads.tv/page/12927/tag, line 7: TypeError: _tt_articles[(_tt_articles.length - 1)] is undefined
+JavaScript warning: https://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/scripts/botLearninal.js, line 470: unreachable code after return statement
+JavaScript warning: https://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/scripts/botLearninal.js, line 470: unreachable code after return statement
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PAPZCTreeManager::Msg_SetTargetAPZC Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+JavaScript error: https://cdn.connatix.com/min/connatix.renderer.infeed.min.js, line 3: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 102: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://c.amazon-adsystem.com/aax2/apstag.js, line 2: TypeError: e is undefined
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 200: TypeError: b is undefined
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/214705.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213007.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213005.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213006.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/193693.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/214705.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213007.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213005.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213006.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/190103.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/193693.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://cdn.connatix.com/min/connatix.renderer.infeed.min.js, line 3: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/193693.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/214705.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 102: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213007.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213005.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213006.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/190103.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/193693.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210913.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213005.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/213006.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/190103.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/210912.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://js.spotx.tv/ados/v1/190103.js, line 34: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 102: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 200: TypeError: b is undefined
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 102: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://static.adsafeprotected.com/main.17.4.114.js, line 200: TypeError: b is undefined
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PAPZCTreeManager::Msg_SetTargetAPZC Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+JavaScript error: https://cdnapisec.kaltura.com/html5/html5lib/v2.69.5/load.php?debug=false&lang=en&modules=Hlsjs%2CacCheck%2CacPreview%2Cbase64_decode%2Cbase64_encode%2Cclass%2CcontrolBarContainer%2CcurrentTimeLabel%2CdurationLabel%2CfullScreenBtn%2Cid3Tag%2CkAnalony%2Ckdark%2CkeyboardShortcuts%2CkgitGuard%2ClargePlayBtn%2CliveAnalytics%2CliveStream%2CmatchMedia%2CmorePlugins%2CnativeBridge%2CplayPauseBtn%2Cpolyfill_Array_filter%2CqualitySettings%2CreportError%2Cscreenfull%2Cscrubber%2Cshare%2CsideBarContainer%2CsourceSelector%2CstatisticsPlugin%2Ctheme%2CtopBarContainer%2CunMuteOverlayButton%2Cutf8_encode%2CvolumeControl%2CwatermarkPlugin%7Cjquery.client%2Ccolor%2Ccookie%2Cdebouncedresize%2ChoverIntent%2CmessageBox%2CmwEmbedUtil%2CmwExtension%2CnaturalSize%7Cjquery.ui.core%2Cmouse%2Cposition%2Cslider%2Ctooltip%2CtouchPunch%2Cwidget%7Cmediawiki.Uri%2CUtilitiesTime%2CUtilitiesUrl%2Cclient%2CjqueryMsg%2Ckmenu%2Clanguage%2Cutil%7Cmediawiki.util.tmpl%7Cmw.AdLoader%2CAdTimeline%2CAkamaiMediaAnalytics%2CBaseAdPlugin%2CDoubleClick%2CEmbedPlayer%2CEmbedPlayerImageOverlay%2CEmbedPlayerKplayer%2CEmbedPlayerNative%2CEmbedPlayerNativeComponent%2CEmbedTypes%2CKAnalytics%2CKBaseButton%2CKBaseComponent%2CKBasePlugin%2CKBaseScreen%2CKBaseSmartContainer%2CKCuePoints%2CKDPMapping%2CKEntryLoader%2CKWidgetSupport%2CKalturaIframePlayerSetup%2CMediaElement%2CMediaPlayer%2CMediaPlayers%2CMediaSource%2CPlayerElement%2CPlayerElementFlash%2CPlayerElementHTML%2CPluginManager%2CVastAdParser%2CajaxProxy%7Cmw.MwEmbedSupport.style&pskwidgetpath=..%2Fkwidget-ps%2F&skin=no-theme&version=20180515T120903Z&*&protocol=https, line 13: TypeError: this is undefined
+JavaScript error: https://cdnapisec.kaltura.com/html5/html5lib/v2.69.5/load.php?debug=false&lang=en&modules=Hlsjs%2CacCheck%2CacPreview%2Cbase64_decode%2Cbase64_encode%2Cclass%2CcontrolBarContainer%2CcurrentTimeLabel%2CdurationLabel%2CfullScreenBtn%2Cid3Tag%2CkAnalony%2Ckdark%2CkeyboardShortcuts%2CkgitGuard%2ClargePlayBtn%2CliveAnalytics%2CliveStream%2CmatchMedia%2CmorePlugins%2CnativeBridge%2CplayPauseBtn%2Cpolyfill_Array_filter%2CqualitySettings%2CreportError%2Cscreenfull%2Cscrubber%2Cshare%2CsideBarContainer%2CsourceSelector%2CstatisticsPlugin%2Ctheme%2CtopBarContainer%2CunMuteOverlayButton%2Cutf8_encode%2CvolumeControl%2CwatermarkPlugin%7Cjquery.client%2Ccolor%2Ccookie%2Cdebouncedresize%2ChoverIntent%2CmessageBox%2CmwEmbedUtil%2CmwExtension%2CnaturalSize%7Cjquery.ui.core%2Cmouse%2Cposition%2Cslider%2Ctooltip%2CtouchPunch%2Cwidget%7Cmediawiki.Uri%2CUtilitiesTime%2CUtilitiesUrl%2Cclient%2CjqueryMsg%2Ckmenu%2Clanguage%2Cutil%7Cmediawiki.util.tmpl%7Cmw.AdLoader%2CAdTimeline%2CAkamaiMediaAnalytics%2CBaseAdPlugin%2CDoubleClick%2CEmbedPlayer%2CEmbedPlayerImageOverlay%2CEmbedPlayerKplayer%2CEmbedPlayerNative%2CEmbedPlayerNativeComponent%2CEmbedTypes%2CKAnalytics%2CKBaseButton%2CKBaseComponent%2CKBasePlugin%2CKBaseScreen%2CKBaseSmartContainer%2CKCuePoints%2CKDPMapping%2CKEntryLoader%2CKWidgetSupport%2CKalturaIframePlayerSetup%2CMediaElement%2CMediaPlayer%2CMediaPlayers%2CMediaSource%2CPlayerElement%2CPlayerElementFlash%2CPlayerElementHTML%2CPluginManager%2CVastAdParser%2CajaxProxy%7Cmw.MwEmbedSupport.style&pskwidgetpath=..%2Fkwidget-ps%2F&skin=no-theme&version=20180515T120903Z&*&protocol=https, line 13: TypeError: this is undefined
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+[Parent 9268, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: https://s0.2mdn.net/instream/video/client.js, line 32: NS_ERROR_NOT_INITIALIZED: 
+[Parent 9268, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 10136, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 9268, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 10036, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 10036, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 3012, Chrome_ChildThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+[Child 3012, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 3012, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7020, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7020, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9492, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9492, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9048, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\dicke\AppData\Local\openvr\openvrpaths.vrpath
+[GPU 8644, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1530304279743	geckodriver	INFO	geckodriver 0.21.0
+1530304279759	geckodriver	INFO	Listening on 127.0.0.1:55784
+1530304282538	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\dicke\\AppData\\Local\\Temp\\rust_mozprofile.8IPoKauCbjdL"
+1530304285505	Marionette	INFO	Listening on port 55793
+1530304285777	Marionette	WARN	TLS certificate errors will be ignored for this session

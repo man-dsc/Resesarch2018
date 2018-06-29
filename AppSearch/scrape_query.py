@@ -23,13 +23,17 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
 
-def get_apps(html_source):    
+def get_apps(html_source, num3):    
     soup = bs4.BeautifulSoup(html_source,'html.parser') 
-    #get all the apps on the page 
-    tags = soup.findAll('a', class_='title', href=re.compile('^/store/apps/details'))
-    href_start = 'https://play.google.com'
+    
     # return a list of tuples: (appname, link, packname)
-    return [(tag['title'], href_start+tag['href'], tag['href'][tag['href'].rfind('=')+1:]) for tag in tags]
+    if num3 = 0:
+    	return[(tag)]
+    if num3 = 1:
+    	#get all the apps on the page 
+    	tags = soup.findAll('a', class_='title', href=re.compile('^/store/apps/details'))
+    	href_start = 'https://play.google.com'
+    	return [(tag['title'], href_start+tag['href'], tag['href'][tag['href'].rfind('=')+1:]) for tag in tags]
 
 def get_last_on_page(html_source):
     # return the appname of the last app on the page 
@@ -154,6 +158,7 @@ tot_apps = 0
 count = 0
 skipped = []
 qapps=[]
+num3 = 0
 urls = [('https://www.apple.com/ca/search/','?src=serp'), ('https://play.google.com/store/search?q=','&c=apps')]
 
 for ur in urls:
@@ -170,11 +175,12 @@ for ur in urls:
 	        print(q, 'skipped')
 	        skipped.append(q)
 	        continue
-	    apps = get_apps(html_source) # a list of tuples (appname,link,packname)
+	    apps = get_apps(html_source, num3) # a list of tuples (appname,link,packname)
 	    print('found', len(apps), 'apps for query:',q)
 	    tot_apps += len(apps)
 	    qapps.append(apps)
 	    #write_to_csv(devname)
+	num3 += 1
     
 end = time.time()
 
@@ -183,9 +189,15 @@ print('skipped:', len(skipped))
 print('total apps;', tot_apps)
 print('\n\ndone! time:',end-start, 'secs')
 
+stores = ['Apple App Store', 'Google Play Store']
+
 with open('appdata.csv', 'w', newline='', encoding='utf8') as f2:
     writer = csv.writer(f2)
+    num = 0
+    num2 = 0
     for q in qapps:
+        writer.writerow([stores[num]])
+        num += 1
         for app in apps:
             writer.writerow([app[0], app[2]])
         
