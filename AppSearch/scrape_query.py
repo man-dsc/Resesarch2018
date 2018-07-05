@@ -17,22 +17,51 @@ scrape apps made by each top developer on google play store
 speed:
     -took ~1h40m for input of 780 devnames
 """
-import requests, bs4, csv, time, re, os
+import requests, bs4, csv, time, re, os, urllib2
   
-from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+#from selenium import webdriver
+#from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
+def powerset(s):
+    r = [[]]
+    for e in s:
+        r += [x+[e] for x in r]
+    return r
 
-def get_apps(html_source, num3):    
+def get_apps(html_source, num3, query):    
     soup = bs4.BeautifulSoup(html_source,'html.parser') 
     
     # return a list of tuples: (appname, link, packname)
-    if num3 = 0:
-    	return[(tag)]
-    if num3 = 1:
+    if num3 == 0:
+    	#tags = soup.findAll('a', class_='title', href=re.compile('^'))
+    	#return[(tag)]
+        headers = {
+        'User-Agent':'iTunes/10.3.1 (Macintosh; Intel Mac OS X 10.6.8) AppleWebKit/533.21.1',
+        'Accept-Encoding' : 'identity'
+    	}
+        endPoint = 'https://itunes.apple.com/search?term={}&media=software&retries=true&limit={}'.format(query, 30)
+        result = requests.get(endPoint, headers=headers)
+        print(result)
+        try:
+            apps = result.json()['results']
+        except ValueError:
+            return
+        if apps:
+            rowdata = []
+            for pair in apps:
+                name = pair.get('trackName').replace('&nbsp;', '').encode("utf-8")
+                bundleId = pair.get('bundleId').replace('&nbsp;', '').encode("utf-8")
+                desc = pair.get('description').replace('&nbsp;', '').encode("utf-8")
+                rating = pair.get('averageUserRating')
+                ratingCount = pair.get('userRatingCount')
+                dev = pair.get('artistName').replace('&nbsp;', '').encode("utf-8")
+                rowdata.append([name, dev])
+            return rowdata
+    if num3 == 1:
     	#get all the apps on the page 
     	tags = soup.findAll('a', class_='title', href=re.compile('^/store/apps/details'))
     	href_start = 'https://play.google.com'
+        print(tags) 
     	return [(tag['title'], href_start+tag['href'], tag['href'][tag['href'].rfind('=')+1:]) for tag in tags]
 
 def get_last_on_page(html_source):
@@ -80,13 +109,8 @@ def scroll_to_end(browser):
     
     
 def get_html_source(url):
-    try:
-        res = requests.get(url)
-        res.raise_for_status()
-        browser.get(url)
-    except Exception as e:
-        print('couldnt find url:',url, e)
-        return None
+    
+    response = urllib2.urlopen(url)
     # scroll to end to ensure all reviews are exoosed on page 
     # clicks stores the num of times the 'show more' button was clicked
     #clicks = scroll_to_end(browser)
@@ -98,15 +122,21 @@ def get_html_source(url):
     # the webpage is rendered w/ javaScript, which beautifulSoup can't handle
     # on it's own 
     #print(clicks,'clicks')
-    return browser.page_source 
+    return response.read() 
 
 def read_query():
-	with open('querys.csv', 'r') as qfile:
-		reader = csv.reader(qfile)
-		qry = []
-		for row in reader:
-			qry.append(row[0])
-	return qry
+   global On
+    
+   with open('querys.csv', 'r') as qfile:
+       reader = csv.reader(qfile)
+       qry = []
+       numb = 0
+       for row in reader:
+            if numb == 0:
+                On = row[0]
+                numb += 1
+            qry.append(row[0])
+   return qry
 
 def print_results():
 	pass
@@ -153,52 +183,84 @@ start = time.time()
 query = read_query()
 
 
-browser = webdriver.Firefox()
+#browser = webdriver.Firefox()
 tot_apps = 0
 count = 0
 skipped = []
 qapps=[]
+apps2 = []
 num3 = 0
 urls = [('https://www.apple.com/ca/search/','?src=serp'), ('https://play.google.com/store/search?q=','&c=apps')]
 
 for ur in urls:
-	for q in query:
+    for q in query:
 	    print('query:',q)
 	    count += 1
 	    if count%10==0:
 	        print('finsihed',count,'/',len(query))
 	        print('current time:', time.time()-start)
 	        
-	    url = ur[0] + q + ur[1].replace(' ','+')
+	    url = (ur[0] + q + ur[1].replace(' ','+')).encode()
 	    html_source = get_html_source(url)
 	    if html_source == None:
 	        print(q, 'skipped')
 	        skipped.append(q)
 	        continue
-	    apps = get_apps(html_source, num3) # a list of tuples (appname,link,packname)
+	    apps = get_apps(html_source, num3, q) # a list of tuples (appname,link,packname)
 	    print('found', len(apps), 'apps for query:',q)
 	    tot_apps += len(apps)
-	    qapps.append(apps)
+	    apps2.append(apps)
 	    #write_to_csv(devname)
-	num3 += 1
     
+    
+    qapps.append([])
+    for app in apps2:
+        qapps[num3].append(app)
+    #print(qapps)
+    apps2 = []
+    num3 += 1
 end = time.time()
 
-print('\n\nsuccess:', count)
+print('')
+print('')
+print('success:', count)
 print('skipped:', len(skipped))
 print('total apps;', tot_apps)
-print('\n\ndone! time:',end-start, 'secs')
+print('')
+print('')
+print('done! time:',end-start, 'secs')
 
 stores = ['Apple App Store', 'Google Play Store']
 
-with open('appdata.csv', 'w', newline='', encoding='utf8') as f2:
+with open('appdata.csv', 'wb') as f2:
     writer = csv.writer(f2)
     num = 0
     num2 = 0
-    for q in qapps:
+    print(len(qapps), len(stores))
+    #print(qapps[1])
+    #print(qapps[0])
+    for apps in qapps:
         writer.writerow([stores[num]])
-        num += 1
-        for app in apps:
-            writer.writerow([app[0], app[2]])
+        print(On)
+        if num == 0 and '1' in On:
+            apps3 = apps[0]
+            for app in apps:
+                print(len(app), num)
+                
+                for ap in app:
+                    writer.writerow([ap[0], ap[1]])
         
+        if num == 1 and '2' in On:
+            for app in apps:
+                #print(app)
+                for ap in app:
+                    writer.writerow([ap[0].encode('utf8'), ap[2].encode('utf8')])
+        num += 1
+        #print(apps)
+        '''for app in apps:
+            if apps == qapps[1]:
+                writer.writerow([app[0].encode('utf8'), app[2].encode('utf8')])
+            elif apps == qapps[0]:
+                writer.writerow([app[0][0],app[0][1]])
+        '''
 
