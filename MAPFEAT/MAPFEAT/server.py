@@ -8,6 +8,7 @@ import finalizeFeatures
 import processTweets
 import searchAppStore
 import topicModeling
+import querysearch
 
 ''' Import Flask Backend '''
 from flask import *
@@ -180,7 +181,10 @@ def screen1():
             print('')
             print('')
             response = "Form Contents <pre>%s</pre>" % "<br/>\n".join(["%s:%s" % item for item in formData.items(multi=True)] )
+            print('')
+            print('form data for the second time')
             print(formData)
+            print('this is response')
             print(response)
             checks = ''
             if 'apple' in response:
@@ -188,29 +192,21 @@ def screen1():
             if 'google' in response:
                 checks += '2'
             print('')
+            print('checks')
             print(checks)
             data = [checks, text1, text2, text3, text4]
+            print('')
+            print('this is data list')
+            print(data)
             
-            '''with open('Inputcsv.csv', 'wb') as fin:
+            with open("querys.csv", "wb") as fin:
                 writer = csv.writer(fin)
                 for row in data:
-                    writer.writerow(row)
-            '''
-           
+                    writer.writerow([row])
+                    print('this is row')
+                    print(row)
+                    print('')
             
-            
-            
-            """form = SimpleForm()
-            print('next s')
-            print(form)
-            if form.validate_on_submit():
-                print('444444444444')
-                print form.example.data
-                print('55555555555')
-            else:
-                print('3333333333')
-                print form.errors"""
-
 
             return redirect(url_for('loading')) 
         except Exception as e:
@@ -224,7 +220,12 @@ def screen1():
 '''intermidiate page'''
 @app.route('/loading', methods = ['GET', 'POST'])
 def loading():
+
     if request.method == 'GET':
+       
+        
+        #eventually this will be made
+       
         '''Callfunction(data)
         apps = []
         devs = []
@@ -235,8 +236,8 @@ def loading():
                 #devs.append(row[1])
             
             '''
-        return render_template('results_screen1.html')
-        '''return redirect(url_for('results_screen1'))'''
+       
+        return redirect(url_for('results_screen1'))
     return render_template('loading.html')
 
 '''-------------------------------------------------------------'''
@@ -245,11 +246,19 @@ def loading():
 @app.route('/results_screen1', methods = ['GET', 'POST'])
 def results_screen1():
     if request.method == 'GET':
-        for app, dev in apps:
+        querysearch.search()
+        '''for app, dev in apps:
             print (app, dev)
-    
+        '''
     return render_template('results_screen1.htm')
 
+'''answers to screen1??? test CSV '''
+'''@app.route('/solutions')
+def solutions():
+    dataset = tablib.Dataset()
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
+        dataset.csv = f.read()
+    return dataset.html'''
 
 
 
