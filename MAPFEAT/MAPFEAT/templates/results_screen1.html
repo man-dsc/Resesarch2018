@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+
+<html>
+	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
+
+	<head>
+		<title> MAPFEAT </title>
+		<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>
+	</head>
+	
+	<body>
+		<div class = "high_row">
+			<p class = "name"> MAPFEAT </p>
+			<ul id = "nav">
+				<li><a href = "contact"> CONTACT </a></li>
+				<li><a href = "about"> ABOUT </a></li>
+				<li><a href = "home"> HOME </a></li>
+			</ul>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+			<script type="text/javascript">
+				$("#nav").addClass("js").before('<div id="menu">&#9776;</div>');
+				$("#menu").click(function(){
+					$("#nav").toggle();
+				});
+				$(window).resize(function(){
+					if(window.innerWidth > 710) {
+						$("#nav").removeAttr("style");
+					}
+				});
+			</script>
+		</div>
+		
+		<div class = "row">
+			<div class = "upload">
+                <p class = "textrec"> File and parameters uploaded! Here are the results. </p>
+          </div>	
+          		
+          <div class = "results">
+                <p class = "textrec"> 10-fold cross validation results: <br>
+                Precision: {{ precision }} <br> 
+                Accuracy: {{ accuracy }} <br>
+                Recall: {{ recall }} <br> 
+                F1: {{ F1 }} <br> 
+                Standard Deviation: {{ stdev }} </p>
+          </div>		
+          
+          <a href="features" class="button">
+          <div class = "sq">
+          <p class = "textrec"> <br><br>   See Features </p>
+          </div>
+          </a>
+
+          <a href="features" class="button">
+          <div class = "sq">
+          <p class = "textrec"> <br><br>   See Features </p>
+          </div>
+          </a>
+
+          <a href="features" class="button">
+          <div class = "sq">
+          <p class = "textrec"> <br><br>   See Features </p>
+          </div>
+          </a>
+
+          <a href="features" class="button">
+          <div class = "sq">
+          <p class = "textrec"> <br><br>   See Features </p>
+          </div>
+          </a>
+
+          <a href="features" class="button">
+          <div class = "sq">
+          <p class = "textrec"> <br><br>   See Features </p>
+          </div>
+          </a>
+          
+          <div class = "low_row"></div>
+	</body>
+</html>
+
