@@ -13,7 +13,7 @@ import querysearch
 ''' Import Flask Backend '''
 from flask import *
 from werkzeug.utils import secure_filename # blocks malicious files disguised as csv
-import os, csv
+import os, csv, sys
 import random
 import shutil
 import requests
@@ -23,7 +23,8 @@ from flask import Flask, render_template, request
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
 
-
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 
 
@@ -220,25 +221,9 @@ def screen1():
 '''intermidiate page'''
 @app.route('/loading', methods = ['GET', 'POST'])
 def loading():
-
-    if request.method == 'GET':
-       
+    querysearch.search()   
         
-        #eventually this will be made
-       
-        '''Callfunction(data)
-        apps = []
-        devs = []
-        with open('Outputcsv.csv', 'r') as fout:
-            reader = csv.reader(fout)
-            for row in csvreader:
-                apps.append((row[0], row[1]))
-                #devs.append(row[1])
-            
-            '''
-       
-        return redirect(url_for('results_screen1'))
-    return render_template('loading.html')
+    return redirect(url_for('results_screen1'))
 
 '''-------------------------------------------------------------'''
 
@@ -246,26 +231,33 @@ def loading():
 @app.route('/results_screen1', methods = ['GET', 'POST'])
 def results_screen1():
     if request.method == 'GET':
-        querysearch.search()
-        '''for app, dev in apps:
-            print (app, dev)
-        '''
-    return render_template('results_screen1.htm')
-
-'''answers to screen1??? test CSV '''
-'''@app.route('/solutions')
-def solutions():
-    dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
-        dataset.csv = f.read()
-    return dataset.html'''
-
-
-
-
-
-
-
+        data = []
+        app =[]
+        dev =[]
+        htmllist=[]
+        file_reader = csv.reader(open('appdata.csv', 'rb'), delimiter=',')
+        print('im here')
+        for row in file_reader:
+            if len(row)>=2:
+                htmllist.append([i.encode('utf8') for i in row])
+                app.append(row[0])
+                dev.append(row[1])
+        data.append([app, dev])
+        big_dict = {}
+        small_dict = {}
+        for i in range(len(app)):
+            big_dict[app[i]]= dev[i]
+        for i in range(len(app)):
+            small_dict[dev[i]]= app[i]
+        print(big_dict)
+        length_dict=len(big_dict)
+        
+        return render_template('results_screen1.html', big_dict=big_dict,
+                               htmllist=htmllist, data=data, app=app,
+                               dev = dev, length_dict = length_dict,
+                               small_dict = small_dict)
+    return render_template('about.html')
+        
 
 
 '''-------------------------------------------------------------'''

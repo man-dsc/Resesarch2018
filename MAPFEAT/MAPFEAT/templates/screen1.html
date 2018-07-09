@@ -1,15 +1,26 @@
 <!DOCTYPE html> 
 
 <html>
+
 	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
 
 	<head>
 		<title> MAPFEAT </title>
 		<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>
         <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>
+        <script type="text/javascript">// <![CDATA[
+        function preloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }//preloader
+        window.onload = preloader;
+// ]]></script>
+
 	</head>
 	
 	<body>
+            <div id="loading"></div>
+    <div id="content">
 		<div class = "high_row">
 			<p class = "name"> MAPFEAT </p>
 			<ul id = "nav">
@@ -31,39 +42,44 @@
 			</script>
 		</div>
 		
-    <div class = "row">
-        <div class = "textbox">
+    <div>
+        <fieldset>
+                <legend>keywords for search</legend>
+            <label>select keywords to refine search</label>
+        <div>
         <form action = "/screen1" method = "POST"> <br>
         <div class = "new_upload">
-                <p class = "textrec"> Key word 1: </p> 
+                <p class = "texting" placeholder="key word 1:"> Key word 1: </p> 
         </div> 
-          <input class = "w3-text"  type="text" name="t_1" value="Input: 1"></input><br>
+          <input class = "w3-text"  type="text" name="t_1" placeholder = "Input: 1"></input><br>
         <div class = "new_upload">
-                <p class = "textrec"> Key word 2: </p>
+                <p class = "texting"> Key word 2: </p>
           </div>   
-          <input class = "w3-text" type="text" name="t_2" value="Input: 2"></input><br>
+          <input class = "w3-text" type="text" name="t_2" placeholder="Input: 2"></input><br>
        <div class = "new_upload">
-                <p class = "textrec"> Key word 3: </p>
+                <p class = "texting"> Key word 3: </p>
           </div>
-          <input class = "w3-text" type="text" name="t_3" value="Input: 3"></input><br>
+          <input class = "w3-text" type="text" name="t_3" placeholder="Input: 3"></input><br>
        <div class = "new_upload">
-                <p class = "textrec"> Key word 4: </p>
+                <p class = "texting"> Key word 4: </p>
           </div> 
-          <input class = "w3-text" type="text" name="t_4" value="Input: 4"></input><br>
-    
+          <input class = "w3-text" type="text" name="t_4" placeholder="Input: 4"></input><br>
+            <br>
           <input class = button type="submit" value="Submit"></input>
-          </div><br>
-
+          </div>
+        </fieldset>
           <fieldset>
                 <legend>Store Search</legend>
                 
                 <label>Search IOS, Play, or Windows store?</label><br/>
-                <input type="checkbox" name="store_type[]" value="google" /> Google Play  <br/>
-                <input type="checkbox" name="store_type[]" value="apple" /> Apple IOS <br/>
+                <input type="checkbox" name="store_type[]" value="google" checked/> Google Play  <br/>
+                <input type="checkbox" name="store_type[]" value="apple" checked/> Apple IOS <br/>
                 <input type="checkbox" name="store_type[]" value="windows" disabled/> Windows (Disabled)  <br/>
           </fieldset>
          </form>         
       </div>
         <div class = "low_row"></div>
+    </div>
 	</body>
+    
 </html>

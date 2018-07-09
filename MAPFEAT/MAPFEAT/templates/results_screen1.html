@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
 
 <html>
+    
 	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
 
 	<head>
@@ -28,53 +29,42 @@
 					}
 				});
 			</script>
-		</div>
+
+<table class ="w3-table-all w3-hoverable">
+  <tr>
+    <th> apps </th>
+    <th> devs </th>  
+  </tr>
+    {% for key in htmllist %}
+  <tr>
+    <td> {{key[0].encode('utf8')}} </td>
+    <td> {{key[1].encode('utf8')}}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+		  <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+        <script src="d3.min.js?v=3.2.8"></script>
+
+        <script type="text/javascript"charset="utf-8">
+            d3.text("appdata.csv", function(appdata) {
+                var parsedCSV = d3.csv.parseRows(appdata);
+
+                var container = d3.select("body")
+                    .append("table")
+
+                    .selectAll("tr")
+                        .appdata(parsedCSV).enter()
+                        .append("tr")
+
+                    .selectAll("td")
+                        .appdata(function(d) { return d; }).enter()
+                        .append("td")
+                        .text(function(d) { return d; });
+            });
+        </script>
 		
-		<div class = "row">
-			<div class = "upload">
-                <p class = "textrec"> File and parameters uploaded! Here are the results. </p>
-          </div>	
-          		
-          <div class = "results">
-                <p class = "textrec"> 10-fold cross validation results: <br>
-                Precision: {{ precision }} <br> 
-                Accuracy: {{ accuracy }} <br>
-                Recall: {{ recall }} <br> 
-                F1: {{ F1 }} <br> 
-                Standard Deviation: {{ stdev }} </p>
-          </div>		
-          
-          <a href="features" class="button">
-          <div class = "sq">
-          <p class = "textrec"> <br><br>   See Features </p>
-          </div>
-          </a>
-
-          <a href="features" class="button">
-          <div class = "sq">
-          <p class = "textrec"> <br><br>   See Features </p>
-          </div>
-          </a>
-
-          <a href="features" class="button">
-          <div class = "sq">
-          <p class = "textrec"> <br><br>   See Features </p>
-          </div>
-          </a>
-
-          <a href="features" class="button">
-          <div class = "sq">
-          <p class = "textrec"> <br><br>   See Features </p>
-          </div>
-          </a>
-
-          <a href="features" class="button">
-          <div class = "sq">
-          <p class = "textrec"> <br><br>   See Features </p>
-          </div>
-          </a>
-          
-          <div class = "low_row"></div>
+        <div class = "low_row"></div>
 	</body>
 </html>
 

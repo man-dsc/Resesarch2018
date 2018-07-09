@@ -111,7 +111,7 @@ def search():
 
     def get_html_source(url):
 
-        response = urllib2.urlopen(url)
+        response = urllib2.urlopen(url.replace(' ', '+'))
         # scroll to end to ensure all reviews are exoosed on page 
         # clicks stores the num of times the 'show more' button was clicked
         #clicks = scroll_to_end(browser)

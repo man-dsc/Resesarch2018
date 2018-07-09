@@ -89,6 +89,82 @@
 }
 
 
+div#content {
+    display: none;
+    }
+ 
+div#loading {
+    top: 200 px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background-image: url("loadingimage.gif") no-repeat;
+    cursor: wait;
+    }
+
+p.texting {
+		padding-top: 0px;
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 0px;
+		float:center;
+		font-family: raleway;
+		font-size: 2pt;
+		color: #000000;
+        position: center;
+	}
+
+table {
+        border: 2px black solid;
+        font: 12px sans-serif;
+    }
+
+td {
+        border: 1px black solid;
+        padding: 5px;
+        border: 1px solid black;
+    }
+
+tr {
+        border: 1px solid black;
+    
+    
+    }
+
+.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr th,.w3-centered tr td{text-align:center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
