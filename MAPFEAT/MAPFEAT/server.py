@@ -208,7 +208,7 @@ def screen1():
                     print(row)
                     print('')
             
-
+            print('redirect url for loading')
             return redirect(url_for('loading')) 
         except Exception as e:
             print(e)
@@ -221,9 +221,13 @@ def screen1():
 '''intermidiate page'''
 @app.route('/loading', methods = ['GET', 'POST'])
 def loading():
-    querysearch.search()   
-        
-    return redirect(url_for('results_screen1'))
+    if request.method == 'GET':
+        render_template('loading.html')
+        print('my name geof')
+        querysearch.search()
+        return redirect(url_for('results_screen1'))
+    print('i love donkey kong')
+    return render_template('loading.html')
 
 '''-------------------------------------------------------------'''
 
@@ -249,7 +253,6 @@ def results_screen1():
             big_dict[app[i]]= dev[i]
         for i in range(len(app)):
             small_dict[dev[i]]= app[i]
-        print(big_dict)
         length_dict=len(big_dict)
         
         return render_template('results_screen1.html', big_dict=big_dict,

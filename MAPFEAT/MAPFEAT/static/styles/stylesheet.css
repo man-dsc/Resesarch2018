@@ -28,6 +28,16 @@
     100% { transform: rotate(360deg); }
 }
 
+div#loading {
+    width: 50%;
+    height: 50px;
+    display: none;
+    background: url(/static/ajax-loader.gif) no-repeat;
+    cursor: wait;
+    margin: auto;
+    padding: 70px 0;
+    }
+
 .textbox {
         padding:8px 16px;
         float:left;
@@ -89,7 +99,7 @@
 }
 
 
-div#content {
+   /* div#content {
     display: none;
     }
  
@@ -102,7 +112,7 @@ div#loading {
     height: 24px;
     background-image: url("loadingimage.gif") no-repeat;
     cursor: wait;
-    }
+    }*/
 
 p.texting {
 		padding-top: 0px;

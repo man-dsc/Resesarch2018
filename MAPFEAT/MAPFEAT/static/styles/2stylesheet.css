@@ -1,3 +1,16 @@
-.block{
-    display: inline-block;
-}
+.S1-input {
+        float: right;
+        position: relative;
+        padding-top: 0px;
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 0px;
+		float:left;
+		font-family: raleway;
+		font-size: 16pt;
+		color: #000000;
+        margin-top: 10px;
+        bottom: 30px;
+
+
+    }
