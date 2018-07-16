@@ -20,7 +20,9 @@
         <a href="home" class="w3-button w3-bar-item">MAPFEAT</a>
         <a href="/" class="w3-button w3-bar-item">home</a>
         </nav>
-
+{% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
 <table class ="w3-table-all w3-hoverable">
   <tr>
     <th> APPLICATIONS </th>

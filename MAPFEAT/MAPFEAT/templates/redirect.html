@@ -31,7 +31,9 @@
 				});
 			</script>
 		</div>
-		
+		{% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
 		<div class = "row">
           		
           <div class = "upload">

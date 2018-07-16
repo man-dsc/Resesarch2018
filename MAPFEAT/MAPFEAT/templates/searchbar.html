@@ -37,6 +37,10 @@
 	</head>
 	
 	<body>
+        
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
         <script>
 		var interval = setInterval(update_progress, 1000);
 function update_progress() {

@@ -21,11 +21,12 @@ import tablib
 
 import globa
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
 
 from globa import *
+from functools import wraps
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -35,6 +36,8 @@ sys.setdefaultencoding('utf8')
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+app.secret_key = "my precious"
 
 UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/data/'
 OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/output/'
@@ -104,6 +107,23 @@ def dated_url_for(endpoint, **values):
             values['q'] = int(random.random()*os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
 
+
+
+
+
+''' login decorators'''
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('you need to log in first to access this page')
+            return redirect(url_for('login'))
+    return wrap
+
+
+
 ''' Start Page '''
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -112,13 +132,33 @@ def home_():
         print('this was a post')
     return render_template('home_.html')
 
+'''login page'''
 
+# Route for handling the login page logic
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> Suport@MAPFEAT.COM'
+        else:
+            session['logged_in'] = True
+            flash('successful login')
+            return render_template('post_login_home.html')
+    return render_template('login.html', error=error)
 
+'''logout'''
 
-
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('logged_in', None)
+    flash('successful logout')
+    return render_template('home_.html')
 
 '''-------------------------------------'''
 @app.route('/first', methods = ['GET', 'POST'])
+@login_required
 def index():
     if request.method == 'POST':
         file = request.files['file']
@@ -142,6 +182,7 @@ def permit(filename):
 
 ''' Input Page '''
 @app.route('/inputs', methods = ['GET', 'POST'])
+@login_required
 def inputs():
     if request.method == 'POST':
         text1 = request.form['text1']
@@ -170,6 +211,7 @@ def inputs():
 
 ''' new page search '''
 @app.route('/screen1', methods = ['GET', 'POST'])
+@login_required
 def screen1():
     formData = request.values if request.method == "GET" else request.values
     if request.method == 'POST':
@@ -237,6 +279,7 @@ def screen1():
 
 '''intermidiate page'''
 @app.route('/loading', methods = ['GET', 'POST'])
+@login_required
 def loading():
     if request.method == 'GET':
         render_template('loading.html')
@@ -250,6 +293,7 @@ def loading():
 
 ''' Results for screen 1 Page '''
 @app.route('/results_screen1', methods = ['GET', 'POST'])
+@login_required
 def results_screen1():
     if request.method == 'GET':
         data = []
@@ -292,6 +336,7 @@ def results_screen1():
 
 ''' Results Page '''
 @app.route('/results', methods = ['GET', 'POST'])
+@login_required
 def results():
     if request.method == 'GET':
         wordsPerTopic = parameters.wordsPerTopic
@@ -341,6 +386,7 @@ def permit(filename):
 
 ''' Error Page '''
 @app.route('/error', methods = ['GET', 'POST'])
+@login_required
 def error():
     if request.method == 'POST':
         file = request.files['file']
@@ -371,6 +417,7 @@ def contact():
 
 ''' Features CSV '''
 @app.route('/features')
+@login_required
 def features():
     dataset = tablib.Dataset()
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
@@ -387,6 +434,7 @@ def plot_csv():
 
 ''' download CSV '''
 @app.route("/getPlotCSV")
+@login_required
 def getPlotCSV():
     # with open("outputs/Adjacency.csv") as fp:
     #     csv = fp.read()

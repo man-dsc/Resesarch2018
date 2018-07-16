@@ -20,6 +20,10 @@
         <a href="/" class="w3-button w3-bar-item">home</a>
         </nav>
         
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+        
         <!-- Slide Show -->
         <section>
             <img class="mySlides" src="https://conted.ucalgary.ca/maincampus/maincampus.jpg" alt="picture 1"style="width:100%">
@@ -42,6 +46,11 @@
                 font-weight: bold;
                 opacity: .5;
                 font-style: italic;
+                }
+                .center{
+                    text-align: center;
+                    left: 50%;
+                    
                 }
             </style>
         
@@ -68,7 +77,7 @@
             <h1>MAPFEAT HOME</h1>
         </div>
         
-        <section class="w3-container w3-center" style="max-width:600px">
+        <section class="w3-container w3-center center" style="max-width:600px">
             <h2 class="w3-wide">MAPFEAT
             <p class="w3-opacity"><i>THE LEADER IN DATA MINING TECHNOLOGIES</i></p>
         </section>
@@ -84,6 +93,5 @@
   <a href="#"><i class="fa fa-linkedin"></i></a>
 </footer>
           
-        <div class = "low_row"></div>
 	</body>
 </html>

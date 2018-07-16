@@ -44,7 +44,9 @@
 				});
 			</script>
 		</div>
-		
+		{% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
     <div>
         <title> Find Applications and Developers by Key Word</title>
         <fieldset>
