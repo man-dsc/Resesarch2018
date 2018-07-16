@@ -19,9 +19,13 @@ import shutil
 import requests
 import tablib
 
+import globa
+
 from flask import Flask, render_template, request
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
+
+from globa import *
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -101,7 +105,20 @@ def dated_url_for(endpoint, **values):
     return url_for(endpoint, **values)
 
 ''' Start Page '''
+
 @app.route('/', methods = ['GET', 'POST'])
+def home_():
+    if request.method == 'POST':
+        print('this was a post')
+    return render_template('home_.html')
+
+
+
+
+
+
+'''-------------------------------------'''
+@app.route('/first', methods = ['GET', 'POST'])
 def index():
     if request.method == 'POST':
         file = request.files['file']
@@ -243,6 +260,7 @@ def results_screen1():
         print('im here')
         for row in file_reader:
             if len(row)>=2:
+                biglist.append([i.encode('utf8') for i in row])
                 htmllist.append([i.encode('utf8') for i in row])
                 app.append(row[0])
                 dev.append(row[1])
@@ -255,6 +273,13 @@ def results_screen1():
             small_dict[dev[i]]= app[i]
         length_dict=len(big_dict)
         
+        ''' this is not working, cant debug at home, console broken.
+        with open('outputs/Adjacency.csv', 'a+') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=' ',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            
+            spamwriter.writerow(htmllist)
+        '''
         return render_template('results_screen1.html', big_dict=big_dict,
                                htmllist=htmllist, data=data, app=app,
                                dev = dev, length_dict = length_dict,
@@ -351,6 +376,27 @@ def features():
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
         dataset.csv = f.read()
     return dataset.html
+
+''' find which one of bottom 2 works better
+@app.route('/getPlotCSV') # this is a job for GET, not POST
+def plot_csv():
+    return send_file('outputs/Adjacency.csv',
+                     mimetype='text/csv',
+                     attachment_filename='Adjacency.csv',
+                     as_attachment=True)'''
+
+''' download CSV '''
+@app.route("/getPlotCSV")
+def getPlotCSV():
+    # with open("outputs/Adjacency.csv") as fp:
+    #     csv = fp.read()
+    #print(biglist) - big list not working i think
+    csv = 'biglist'
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=myplot.csv"})
 
 if __name__ == '__main__':
     app.run(port = 4000)

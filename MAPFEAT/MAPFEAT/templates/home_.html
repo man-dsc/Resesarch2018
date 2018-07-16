@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+
+<html>
+	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
+
+	<head>
+		<title> MAPFEAT </title>
+		<!--<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>-->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	</head>
+	
+	<body>
+        <!-- Navigation -->
+		<nav class="w3-bar w3-black">
+        <a href="contact" class="w3-button w3-bar-item">Contact</a>
+        <a href="about" class="w3-button w3-bar-item">About</a>
+        <a href="screen1" class="w3-button w3-bar-item">Key Word Search</a>
+        <a href="home" class="w3-button w3-bar-item">MAPFEAT</a>
+        <a href="/" class="w3-button w3-bar-item">home</a>
+        </nav>
+        
+        <!-- Slide Show -->
+        <section>
+            <img class="mySlides" src="https://conted.ucalgary.ca/maincampus/maincampus.jpg" alt="picture 1"style="width:100%">
+            
+            <img class="mySlides" src="https://conted.ucalgary.ca/dtc/downtown.jpg" alt="downtown yyc" style="width:100%">
+            
+            <img class="mySlides" src="https://static.wixstatic.com/media/0cd75f_563c81d6e5a849ddb3121632b07bc339~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_628,h_419,al_c,q_80,usm_0.66_1.00_0.01/0cd75f_563c81d6e5a849ddb3121632b07bc339~mv2_d_6000_4000_s_4_2.webp" alt="yyc" style="width:100%">
+            
+            
+        </section>
+        
+            <style>
+            .centered {
+                position: absolute;
+                top: 15%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 40px;
+                font-weight: bold;
+                opacity: .5;
+                font-style: italic;
+                }
+            </style>
+        
+       <script>
+           // Automatic Slideshow - change image every 3 seconds
+           var myIndex = 0;
+           carousel();
+
+           function carousel() 
+           {
+               var i;
+               var x = document.getElementsByClassName("mySlides");
+               for (i = 0; i < x.length; i++) 
+               {
+                    x[i].style.display = "none";
+                }
+               myIndex++;
+               if (myIndex > x.length) {myIndex = 1}
+               x[myIndex-1].style.display = "block";
+               setTimeout(carousel, 3000);
+            }
+        </script>
+		<div class="centered">
+            <h1>MAPFEAT HOME</h1>
+        </div>
+        
+        <section class="w3-container w3-center" style="max-width:600px">
+            <h2 class="w3-wide">MAPFEAT
+            <p class="w3-opacity"><i>THE LEADER IN DATA MINING TECHNOLOGIES</i></p>
+        </section>
+        
+        
+        
+        <!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-black w3-xlarge">
+  <a href="#"><i class="fa fa-facebook-official"></i></a>
+  <a href="#"><i class="fa fa-pinterest-p"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-flickr"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+</footer>
+          
+        <div class = "low_row"></div>
+	</body>
+</html>

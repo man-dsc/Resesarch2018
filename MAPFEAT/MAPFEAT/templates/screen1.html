@@ -9,6 +9,7 @@
 		<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>
         <link rel = "2stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/2stylesheet.css') }}"/>
         
+        
         <script type="text/javascript">// <![CDATA[
         function loading(){
             $("#loading").show();
@@ -26,7 +27,9 @@
 			<ul id = "nav">
 				<li><a href = "contact"> CONTACT </a></li>
 				<li><a href = "about"> ABOUT </a></li>
-				<li><a href = "home"> HOME </a></li>
+                <li><a href = "screen1"> Key Word Search </a></li>
+                <li><a href = "home"> MAPFEAT </a></li>
+                <li><a href = "/"> HOME </a></li>
 			</ul>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 			<script type="text/javascript">
@@ -45,7 +48,7 @@
     <div>
         <title> Find Applications and Developers by Key Word</title>
         <fieldset>
-                <legend>Search Parameters</legend>
+                <legend>Find Applications and Developers by Key Word</legend>
             <label>Please Select Key Words to Refine Your Search</label>
         <div>
         <form action = "/screen1" method = "POST"> <br>
@@ -67,6 +70,7 @@
           </div>
          </form>         
       </div>
+    <div class=waiting>
     <div id="loading">
         <p>
     <h1>Loading...</h1>
@@ -74,6 +78,7 @@
     </div>
     <div id="content"></div>
         <div class = "low_row"></div>
+    </div>
     </div>
 	</body>
     
