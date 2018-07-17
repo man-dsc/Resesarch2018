@@ -20,8 +20,10 @@ import requests
 import tablib
 
 import globa
+import sqlite3
+import StringIO
 
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
 
@@ -36,6 +38,7 @@ sys.setdefaultencoding('utf8')
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.database = "sample.db"
 
 app.secret_key = "my precious"
 
@@ -123,6 +126,10 @@ def login_required(f):
     return wrap
 
 
+def connect_db():
+    return sqlite3.connect(app.database)
+
+
 
 ''' Start Page '''
 
@@ -144,7 +151,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('successful login')
-            return render_template('post_login_home.html')
+            return redirect(url_for('post_home'))
     return render_template('login.html', error=error)
 
 '''logout'''
@@ -155,6 +162,16 @@ def logout():
     session.pop('logged_in', None)
     flash('successful logout')
     return render_template('home_.html')
+
+'''home after login'''
+@app.route('/post_home')
+@login_required
+def post_home():
+    g.db = connect_db()
+    cur = g.db.execute('select * from posts')
+    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
+    g.db.close()
+    return render_template('post_login_home.html', posts=posts)
 
 '''-------------------------------------'''
 @app.route('/first', methods = ['GET', 'POST'])
@@ -316,14 +333,22 @@ def results_screen1():
         for i in range(len(app)):
             small_dict[dev[i]]= app[i]
         length_dict=len(big_dict)
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('THIS IS THE BIG LIST')
+        print(biglist)
         
         ''' this is not working, cant debug at home, console broken.
         with open('outputs/Adjacency.csv', 'a+') as csvfile:
+            print('open')
             spamwriter = csv.writer(csvfile, delimiter=' ',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             
-            spamwriter.writerow(htmllist)
-        '''
+            spamwriter.writerow(htmllist)'''
+        
         return render_template('results_screen1.html', big_dict=big_dict,
                                htmllist=htmllist, data=data, app=app,
                                dev = dev, length_dict = length_dict,
@@ -433,18 +458,38 @@ def plot_csv():
                      as_attachment=True)'''
 
 ''' download CSV '''
-@app.route("/getPlotCSV")
+'''@app.route("/getPlotCSV")
 @login_required
 def getPlotCSV():
-    # with open("outputs/Adjacency.csv") as fp:
-    #     csv = fp.read()
+    with open("outputs/Adjacency.csv") as fp:
+        csv = fp.read()
     #print(biglist) - big list not working i think
-    csv = 'biglist'
+    #csv = 'biglist'
     return Response(
         csv,
         mimetype="text/csv",
         headers={"Content-disposition":
-                 "attachment; filename=myplot.csv"})
+                 "attachment; filename=myplot.csv"})'''
 
+@app.route('/getPlotCSV')
+@login_required
+def post():
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('THIS IS THE BIG LIST')
+    print(biglist)
+    si = StringIO.StringIO()
+    cw = csv.writer(si)
+    cw.writerows(biglist)
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
+    
+    
+    
 if __name__ == '__main__':
     app.run(port = 4000)

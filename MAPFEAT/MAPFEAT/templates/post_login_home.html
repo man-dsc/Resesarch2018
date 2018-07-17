@@ -2,7 +2,16 @@
         <!--child template-->
 {% block content %}
 
-<h1>THIS POST LOGIN SCREEN</h1>  
+<h1>THIS POST LOGIN SCREEN</h1>
+<br>
+<p>Click <a href="/logout">here</a> to logout.</p>
+<br><br>
+<h3>Posts:</h3>
+{% for post in posts %}
+  <strong>Title:</strong> {{ post.title }} <br>
+  <strong>Post:</strong> {{ post.description }} <br>
+<br>
+{% endfor %}
 
 {% endblock %}
         
