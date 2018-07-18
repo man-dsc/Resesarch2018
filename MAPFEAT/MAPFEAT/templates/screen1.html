@@ -1,15 +1,9 @@
-<!DOCTYPE html> 
+{% extends "post-login-nav.html" %}
+        <!--child template-->
 
-<html>
-
-	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
-
-	<head>
-		<title> MAPFEAT </title>
+{% block head %}
 		<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/stylesheet.css') }}"/>
-        <link rel = "2stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/2stylesheet.css') }}"/>
-         <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        
         
         
         <script type="text/javascript">// <![CDATA[
@@ -18,72 +12,53 @@
             $("#content").hide();       
         }
 // ]]></script>
-
-	</head>
+{% endblock %}
 	
-	<body>
-            <div id="bro"></div>
-    <div id="content">
-		<div class = "high_row">
-			<p class = "name"> MAPFEAT </p>
-			<ul id = "nav">
-				<li><a href = "contact"> CONTACT </a></li>
-				<li><a href = "about"> ABOUT </a></li>
-                <li><a href = "screen1"> Key Word Search </a></li>
-                <li><a href = "home"> MAPFEAT </a></li>
-                <li><a href = "/"> HOME </a></li>
-			</ul>
+{% block content %}
+			
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-			<script type="text/javascript">
-				$("#nav").addClass("js").before('<div id="menu">&#9776;</div>');
-				$("#menu").click(function(){
-					$("#nav").toggle();
-				});
-				$(window).resize(function(){
-					if(window.innerWidth > 710) {
-						$("#nav").removeAttr("style");
-					}
-				});
-			</script>
-		</div>
+			
 		{% for message in get_flashed_messages() %}
             {{ message }}
         {% endfor %}
-    <div>
+            <div id="content">                                                                                         <!--   div 1 'CONTENT' -->
+   <!-- <div>                                                                                                                      BLOCK      div 3  -->  
         <title> Find Applications and Developers by Key Word</title>
-        <fieldset>
+        <form action = "/screen1" method = "POST"> <br>                                                                  <!--      form  --> 
+        <fieldset>                                                                                                          <!--      fieldset 1  -->  
                 <legend>Find Applications and Developers by Key Word</legend>
             <label>Please Select Key Words to Refine Your Search</label>
-        <div>
-        <form action = "/screen1" method = "POST"> <br>
+        <div>                                                                                                                   <!--      div 4  -->  
+        <br>
           <input class = "w3-text"  type="text" name="t_1" placeholder = "Key Word: 1"></input><br>
           <input class = "w3-text" type="text" name="t_2" placeholder="Key Word: 2"></input><br>
           <input class = "w3-text" type="text" name="t_3" placeholder="Key Word: 3"></input><br>
           <input class = "w3-text" type="text" name="t_4" placeholder="Key Word: 4"></input><br>
             <br>
-        </fieldset>
-          <fieldset>
+        </div>                                                                                                                  <!--        end div  4)  -->  
+        </fieldset>                                                                                                         <!--      end fieldset 1  -->  
+          <fieldset>                                                                                                        <!--        fieldset 2  -->  
                 <legend>Store Search </legend>
                 
                 <label>Search IOS, Play, or Windows store?</label><br/>
                 <input type="checkbox" name="store_type[]" value="google" checked/> Google Play  <br/>
                 <input type="checkbox" name="store_type[]" value="apple" checked/> Apple IOS <br/>
                 <input type="checkbox" name="store_type[]" value="windows" disabled/> Windows (Disabled)  <br/>
-          </fieldset>
+          </fieldset>                                                                                                       <!--       end fieldset 2  -->  
+                                                                     <!--      form start  -->  
         <input class = button type="submit" value="Submit" name="anything_submit" onclick = "loading();"></input>
-          </div>
-         </form>         
-      </div>
-    <div class=waiting>
-    <div id="loading">
+          
+         </form>                                                                                                        <!--        end form  -->  
+     <!--  </div>                                                                                                                 block            end div 3  -->
+    </div>                                                                                                              <!--        end div 1  -->  
+    <div class=waiting>                                                                                                 <!--    div 5  -->  
+    <div id="loading">                                                                                                     <!--       div 6  -->  
         <p>
     <h1>Loading...</h1>
         </p>
-    </div>
-    <div id="content"></div>
-        <div class = "low_row"></div>
-    </div>
-    </div>
-	</body>
-    
-</html>
+    </div>                                                                                                                 <!--       end div 6  -->  
+     <!-- <div id="content"></div>                                                                                                   div 7 and end div 7  -->  
+       <!--  <div class = "low_row"></div>                                                                                          div 8 and end div 8  -->  
+    </div>                                                                                                              <!--      end div 5  -->  
+<br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

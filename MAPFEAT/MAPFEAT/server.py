@@ -24,11 +24,15 @@ import sqlite3
 import StringIO
 
 from flask import Flask, render_template, request, redirect, url_for, flash, make_response
+from flask import session, abort
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
 
 from globa import *
 from functools import wraps
+from sqlalchemy.orm import sessionmaker
+from tabledef import *
+engine = create_engine('sqlite:///tutorial.db', echo=True)
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -40,7 +44,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.database = "sample.db"
 
-app.secret_key = "my precious"
+app.secret_key = '\xf9o\n\xfbP\xd4\xb7\xa6$\x1e\xb9\x8c\xb6\x06$\xce\xca\xeb\x14\x1cwo\xce\xec'
 
 UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/data/'
 OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/output/'
@@ -146,13 +150,22 @@ def home_():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> Suport@MAPFEAT.COM'
-        else:
+        
+        POST_USERNAME = str(request.form['username'])
+        POST_PASSWORD = str(request.form['password'])
+ 
+        Session = sessionmaker(bind=engine)
+        s = Session()
+        query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
+        result = query.first()
+        if result:
             session['logged_in'] = True
             flash('successful login')
             return redirect(url_for('post_home'))
+        else:
+            error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> Suport@MAPFEAT.COM'
     return render_template('login.html', error=error)
+        
 
 '''logout'''
 
