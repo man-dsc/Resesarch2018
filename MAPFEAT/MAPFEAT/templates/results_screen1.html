@@ -1,28 +1,7 @@
-<!DOCTYPE html> 
-
-<html>
-    
-	<meta name = "viewport" content= "width = device-width, initial-scale = 1.0">
-
-	<head>
-		<title> MAPFEAT </title>
-		<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename='styles/2stylesheet.css') }}"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-	</head>
-	
-	<body>
-		<!-- Navigation -->
-		<nav class="w3-bar w3-black">
-        <a href="contact" class="w3-button w3-bar-item">Contact</a>
-        <a href="about" class="w3-button w3-bar-item">About</a>
-        <a href="screen1" class="w3-button w3-bar-item">Key Word Search</a>
-        <a href="home" class="w3-button w3-bar-item">MAPFEAT</a>
-        <a href="/" class="w3-button w3-bar-item">Home</a>
-        </nav>
-{% for message in get_flashed_messages() %}
-            {{ message }}
-        {% endfor %}
+{% extends "post-login-nav.html" %}
+        
+<!--child template-->
+{% block content %}
         <br>
 <table class ="w3-table-all w3-hoverable">
   <tr>
@@ -64,6 +43,6 @@
 		<a href="getPlotCSV" class="but">
           <p class = "textrec"> <br><br> Download CSV </p>
           </a>
-	</body>
-</html>
+
+{% endblock %}
 
