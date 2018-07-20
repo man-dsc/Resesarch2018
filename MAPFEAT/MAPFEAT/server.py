@@ -32,7 +32,7 @@ from globa import *
 from functools import wraps
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
-engine = create_engine('sqlite:///tutorial.db', echo=True)
+engine = create_engine('sqlite:///userpass.db', echo=True)
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -42,7 +42,6 @@ sys.setdefaultencoding('utf8')
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.database = "sample.db"
 
 app.secret_key = '\xf9o\n\xfbP\xd4\xb7\xa6$\x1e\xb9\x8c\xb6\x06$\xce\xca\xeb\x14\x1cwo\xce\xec'
 
@@ -52,7 +51,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
 ALLOWED_EXTENSIONS = set(['csv'])
 
-'''---------------------------------------------------------------'''
+
 
 
 
@@ -88,7 +87,7 @@ parameters_2 = parameters_2(-1, -1, -1, -1)
 
 
 
-'''---------------------------------------------------------------'''
+
 ''' Instantiation of class for environment vars '''
 class parameters:
     def __init__(self, var1, var2, var3, var4):
@@ -130,17 +129,10 @@ def login_required(f):
     return wrap
 
 
-def connect_db():
-    return sqlite3.connect(app.database)
-
-
-
 ''' Start Page '''
 
 @app.route('/', methods = ['GET', 'POST'])
 def home_():
-    if request.method == 'POST':
-        print('this was a post')
     return render_template('home_.html')
 
 '''login page'''
@@ -180,13 +172,9 @@ def logout():
 @app.route('/post_home')
 @login_required
 def post_home():
-    g.db = connect_db()
-    cur = g.db.execute('select * from posts')
-    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
-    g.db.close()
-    return render_template('post_login_home.html', posts=posts)
+    return render_template('post_login_home.html')
 
-'''-------------------------------------'''
+
 @app.route('/first', methods = ['GET', 'POST'])
 @login_required
 def index():
@@ -233,11 +221,6 @@ def inputs():
             return render_template('redirect.html')
     return render_template('inputs.html')
 
-'''-----------------------------------------------------------'''
-
-
-
-
 
 ''' new page search '''
 @app.route('/screen1', methods = ['GET', 'POST'])
@@ -251,87 +234,53 @@ def screen1():
         text2 = request.form['t_2']
         text3 = request.form['t_3']
         text4 = request.form['t_4']
-        print([text1, text2, text3, text4])
         try:
-            print('1')
+            
             text1, text2, text3, text4 = str(text1), str(text2), str(text3), str(text4)
-            print('2')
+          
             parameters_2.keyword1 = text1
             parameters_2.keyword2 = text2
             parameters_2.keyword3 = text3
             parameters_2.keyword4 = text4
-            print(text1, text2, text3, text4)
-            print('')
-            print('')
-            print('')
-            print('Form Data')
-            print(formData)
-            print('')
-            print('')
-            print('')
-            print('')
+        
             response = "Form Contents <pre>%s</pre>" % "<br/>\n".join(["%s:%s" % item for item in formData.items(multi=True)] )
-            print('')
-            print('form data for the second time')
-            print(formData)
-            print('this is response')
-            print(response)
+            
             checks = ''
             if 'apple' in response:
                 checks += '1'
             if 'google' in response:
                 checks += '2'
-            print('')
-            print('checks')
-            print(checks)
+            
             data = [checks, text1, text2, text3, text4]
-            print('')
-            print('this is data list')
-            print(data)
+           
             
             with open("querys.csv", "wb") as fin:
                 writer = csv.writer(fin)
                 for row in data:
                     writer.writerow([row])
-                    print('this is row')
-                    print(row)
-                    print('')
+                    
             
-            print('redirect url for loading')
-            return redirect(url_for('loading')) 
+            
+            return redirect(url_for('results_screen1')) 
         except Exception as e:
             print(e)
             return render_template('about.html')
     return render_template('screen1.html')
 
 
-'''-----------------------------------------------------------'''
-
-'''intermidiate page'''
-@app.route('/loading', methods = ['GET', 'POST'])
-@login_required
-def loading():
-    if request.method == 'GET':
-        render_template('loading.html')
-        print('my name geof')
-        querysearch.search()
-        return redirect(url_for('results_screen1'))
-    print('i love donkey kong')
-    return render_template('loading.html')
-
-'''-------------------------------------------------------------'''
 
 ''' Results for screen 1 Page '''
 @app.route('/results_screen1', methods = ['GET', 'POST'])
 @login_required
 def results_screen1():
     if request.method == 'GET':
+        querysearch.search()
         data = []
         app =[]
         dev =[]
         htmllist=[]
         file_reader = csv.reader(open('appdata.csv', 'rb'), delimiter=',')
-        print('im here')
+
         for row in file_reader:
             if len(row)>=2:
                 biglist.append([i.encode('utf8') for i in row])
@@ -346,22 +295,8 @@ def results_screen1():
         for i in range(len(app)):
             small_dict[dev[i]]= app[i]
         length_dict=len(big_dict)
-        print('')
-        print('')
-        print('')
-        print('')
-        print('')
-        print('THIS IS THE BIG LIST')
-        print(biglist)
-        
-        ''' this is not working, cant debug at home, console broken.
-        with open('outputs/Adjacency.csv', 'a+') as csvfile:
-            print('open')
-            spamwriter = csv.writer(csvfile, delimiter=' ',
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            
-            spamwriter.writerow(htmllist)'''
-        
+ 
+     
         return render_template('results_screen1.html', big_dict=big_dict,
                                htmllist=htmllist, data=data, app=app,
                                dev = dev, length_dict = length_dict,
@@ -393,10 +328,15 @@ def results():
         
         # Process Tweets
         processTweets.process()
-       
+        
+        
+        
         render_template('inputs.html')
         # Attain classification results - k fold validation results
         results = classifyTweets.classify()
+        
+        
+        
         accuracy = results[0]
         precision = results[1]
         recall = results[2]
@@ -405,13 +345,20 @@ def results():
    
         render_template('inputs.html')
         topicModeling.extractTopics(wordsPerTopic, numTopics)
-   
+        
+        
+        
         searchAppStore.search(appLimit)
+        
         
     
         extractFeatures.extract()
-      
+        
+        
+        
         finalizeFeatures.finalize(sharedBetween)
+        
+        
         
         return render_template('results.html', accuracy = accuracy, \
                                precision = precision, recall = recall, \
@@ -462,38 +409,23 @@ def features():
         dataset.csv = f.read()
     return dataset.html
 
-''' find which one of bottom 2 works better
-@app.route('/getPlotCSV') # this is a job for GET, not POST
-def plot_csv():
-    return send_file('outputs/Adjacency.csv',
-                     mimetype='text/csv',
-                     attachment_filename='Adjacency.csv',
-                     as_attachment=True)'''
-
-''' download CSV '''
-'''@app.route("/getPlotCSV")
+''' About_postlogin Page '''
+@app.route('/about_postlogin')
 @login_required
-def getPlotCSV():
-    with open("outputs/Adjacency.csv") as fp:
-        csv = fp.read()
-    #print(biglist) - big list not working i think
-    #csv = 'biglist'
-    return Response(
-        csv,
-        mimetype="text/csv",
-        headers={"Content-disposition":
-                 "attachment; filename=myplot.csv"})'''
+def about_postlogin():
+    return render_template('about-postlogin.html')
+
+''' Contactp post login Page '''
+@app.route('/contact_postlogin')
+@login_required
+def contact_postlogin():
+    return render_template('contact_postlogin.html')
+
 
 @app.route('/getPlotCSV')
 @login_required
 def post():
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('THIS IS THE BIG LIST')
-    print(biglist)
+   
     si = StringIO.StringIO()
     cw = csv.writer(si)
     cw.writerows(biglist)

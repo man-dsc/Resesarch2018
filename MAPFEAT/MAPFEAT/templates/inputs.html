@@ -1,7 +1,26 @@
-{% extends "pre-login-nav.html" %}
+{% extends "post-login-nav.html" %}
         
 <!--child template-->
+{% block head %}
+<script type="text/javascript">// <![CDATA[
+        function loading(){
+            $("#loading").show();
+            $("#content").hide();       
+        }
+// ]]></script>
+{% endblock %}
+
+
 {% block content %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+{% for message in get_flashed_messages() %}
+    {{ message }}
+{% endfor %}
+ <div id="content">                                                                                         <!--   div 1 'CONTENT' -->
+
+
 
   <title> Fill Form Parameters</title>
         <fieldset>
@@ -18,8 +37,53 @@
 
           <input class = "w3-text" type="text" name="text4" placeholder="Integer 4"> Minimum Number of Apps per Query Sharing Each Feature</input><br><br>
 
-        <input type="submit" value="Submit"></input>
+        <input class = button type="submit" value="Submit" name="anything_submit" onclick = "loading(); timedText()"></input>
             <br>
         </form>
         </fieldset>
+</div>
+
+
+<script>
+function timedText() {
+    setTimeout(myTimeout1, 1000) 
+    setTimeout(myTimeout2, 34000) 
+    setTimeout(myTimeout3, 38000)
+    setTimeout(myTimeout3, 75000)
+    setTimeout(myTimeout3, 80000)
+    setTimeout(myTimeout3, 85000) 
+}
+function myTimeout1() {
+    document.getElementById("demo").innerHTML = "Processing Tweets";
+}
+function myTimeout2() {
+    document.getElementById("demo").innerHTML = "Classifying Tweets";
+}
+function myTimeout3() {
+    document.getElementById("demo").innerHTML = "Topic Modeling";
+}
+function myTimeout3() {
+    document.getElementById("demo").innerHTML = "Searching App Store";
+}    
+function myTimeout3() {
+    document.getElementById("demo").innerHTML = "Extracting Features";
+}    
+function myTimeout3() {
+    document.getElementById("demo").innerHTML = "Finalizing Features";
+}        
+</script>
+
+
+<div class=waiting> 
+    <div id="loading">
+        <p>
+    <h1>Loading...</h1>
+        <p id="demo"></p>
+        </p>
+    </div>               
+    
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

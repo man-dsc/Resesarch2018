@@ -1,10 +1,64 @@
 {% extends "post-login-nav.html" %}
-        <!--child template-->
+	
+<!--child template-->
 {% block content %}
 
-<h1>POST LOGIN SCREEN</h1>
-<br>
-
-
-{% endblock %}
+        <!-- Slide Show -->
+        <section>
+            <img class="mySlides" src="https://i.pinimg.com/originals/1a/e1/41/1ae1419b5da7435912e519be58e95ff4.jpg" alt="picture 1"style="width:100%">
+            
+            <img class="mySlides" src="https://images.wallpaperscraft.com/image/canada_calgary_lights_evening_dusk_blue_sky_58622_2560x1080.jpg" alt="downtown yyc" style="width:100%">
+            
+            <img class="mySlides" src="https://images.wallpaperscraft.com/image/banff_canada_mountains_peaks_snow_covered_118669_2560x1080.jpg" alt="yyc" style="width:100%">
+            
+            
+        </section>
         
+            <style>
+            .centered {
+                position: absolute;
+                top: 15%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 40px;
+                font-weight: bold;
+                opacity: .5;
+                font-style: italic;
+                }
+                .center{
+                    text-align: center !important;
+                    left: 50% !important;
+                    
+                }
+            </style>
+        
+       <script>
+           // Automatic Slideshow - change image every 3 seconds
+           var myIndex = 0;
+           carousel();
+
+           function carousel() 
+           {
+               var i;
+               var x = document.getElementsByClassName("mySlides");
+               for (i = 0; i < x.length; i++) 
+               {
+                    x[i].style.display = "none";
+                }
+               myIndex++;
+               if (myIndex > x.length) {myIndex = 1}
+               x[myIndex-1].style.display = "block";
+               setTimeout(carousel, 3000);
+            }
+        </script>
+		<!--<div class="centered">
+            <h1>MAPFEAT HOME</h1>
+        </div>-->
+        
+        <section class="w3-container w3-center " style="max-width:600px">
+            <h2 class="w3-wide ">MAPFEAT
+            <p class="w3-opacity "><i>LEADERS IN DATA MINING TECHNOLOGIES</i></p>
+            </h2>
+        </section>
+{% endblock %}

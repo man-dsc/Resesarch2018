@@ -21,8 +21,12 @@
 		{% for message in get_flashed_messages() %}
             {{ message }}
         {% endfor %}
-            <div id="content">                                                                                         <!--   div 1 'CONTENT' -->
-   <!-- <div>                                                                                                                      BLOCK      div 3  -->  
+            <div id="content">                                                                                    <!--   div 1 'CONTENT' -->
+                
+                 <div id ="wrap">                                                                                                                    <!--   BLOCK      div 3  -->  
+                
+                
+   <div id ="main">                                                                                                                    <!--   BLOCK      div 3  -->  
         <title> Find Applications and Developers by Key Word</title>
         <form action = "/screen1" method = "POST"> <br>                                                                  <!--      form  --> 
         <fieldset>                                                                                                          <!--      fieldset 1  -->  
@@ -40,16 +44,16 @@
           <fieldset>                                                                                                        <!--        fieldset 2  -->  
                 <legend>Store Search </legend>
                 
-                <label>Search IOS, Play, or Windows store?</label><br/>
-                <input type="checkbox" name="store_type[]" value="google" checked/> Google Play  <br/>
-                <input type="checkbox" name="store_type[]" value="apple" checked/> Apple IOS <br/>
-                <input type="checkbox" name="store_type[]" value="windows" disabled/> Windows (Disabled)  <br/>
+                <label>Search IOS, Play, or Windows store?</label><br>
+                <input type="checkbox" name="store_type[]" value="google" checked/> Google Play  <br>
+                <input type="checkbox" name="store_type[]" value="apple" checked/> Apple IOS <br>
+                <input type="checkbox" name="store_type[]" value="windows" disabled/> Windows (Disabled)  <br>
           </fieldset>                                                                                                       <!--       end fieldset 2  -->  
                                                                      <!--      form start  -->  
         <input class = button type="submit" value="Submit" name="anything_submit" onclick = "loading();"></input>
           
          </form>                                                                                                        <!--        end form  -->  
-     <!--  </div>                                                                                                                 block            end div 3  -->
+     </div>                                                                                                 </div>               <!--   block            end div 3  -->
     </div>                                                                                                              <!--        end div 1  -->  
     <div class=waiting>                                                                                                 <!--    div 5  -->  
     <div id="loading">                                                                                                     <!--       div 6  -->  

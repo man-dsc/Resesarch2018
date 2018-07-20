@@ -1,0 +1,24 @@
+{% extends "post-login-nav.html" %}
+        <!--child template-->
+
+{% block content %}
+		
+		<div class = "row">
+            <div class = "left-align">
+                <h4><p class = "textrec"> This web-based tool is a Python implementaton 
+                of MAPFEAT, a method that introduces software features to emergency 
+                apps by automating the mining of needs from general purpose tweets 
+                and their translation into real app features. The tool has been 
+                evaluated by a case study of the 2016 wildfire in Fort McMurray, 
+                Canada, in which it identified a significant amount of new and 
+                valuable functionality. The process by which MAPFEAT works is
+                depicted in the figure below.
+                </p>
+                </h4>
+                </div>
+            
+            <img src = "{{ url_for('static', filename='styles/images/mappingProcess.jpg') }}" class = "w3-image">
+		</div>
+<br><br><br><br>
+		
+{% endblock %}
