@@ -1,11 +1,152 @@
-{% extends "post-login-nav.html" %}
+{% extends "pre-login-nav.html" %}
         <!--child template-->
 
 {% block content %}
-		<div class = "row">
-			<h3>Contact us anytime during business hours. We are happy to answer any questions.
-our business hours are monday to friday 9:00 am to 5:00 pm mst</h3>
-		</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="text"><h1>Contact us Monday to Friday 8:00 - 17:00 MST</h1></div>
+
+<style>
+    .text{
+        text-indent: 50px
+        
+    }
+    .info-box{
+        
+    }
+    
+    .row1{
+        columns: 150px 3;
+        column-gap: 0;
+        column-rule: 1px dotted #ddd;
+        
+    }
+    
+    .col-md-4{
+         text-decoration: none;
+         color: black;
+         display: block;
+         padding: 1em;
+         text-align: center;
+         /*border-bottom: 1px solid #1a242f;*/
+        
+    }
+    
+    .info-post{
+        
+    }
+    
+    table, th, td {
+        border: 0px solid black;
+        
+    }
+    table{
+        border-collapse:collapse;
+        border: none;
+        border-top: none;
+    }
+
+		.n-bordered{
+			border: none;
+		}
+
+		.bordered td, .n-bordered td{
+			border: 1px solid black;
+		}
+
+		.n-bordered tr:first-child td{
+			border-top: none;
+		}
+
+		.n-bordered tr:last-child td{
+			border-bottom: none;
+		}
+
+		.n-bordered tr td:first-child{
+			border-left: none;
+		}
+
+		.n-bordered tr td:last-child{
+			border-right: none;
+		}
+    
+</style>
+
+<div class = "info-box">
+    <div class="row1">
+        <div class="col-md-4">
+            <div class="info-post w3-center">
+                <table class="w3-table">
+                    <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-map-marker"></i></a><br><br>
+                       </td>
+                        <td> 
+                <h2>Address</h2>            
+                <p>Guenther Ruhe</p>
+                <p>University of Calgary
+                <br>
+                
+                                    2500 University Drive NW
+                <br>
+                
+                                    Calgary, Alberta, Canada T2N 1N4
+
+                </p><br><br>
+                       </td> 
+                    </tr> 
+                </table> 
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-post">
+                 <table class="w3-table">
+                     <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-envelope-o"></i></a><br><br>
+                           </td>
+                        <td> 
+                <h2>Email</h2>
+                <p>
+                    <a href="#">ruhe@ucalgary.ca</a>
+                    <a href="#"></a>
+                </p><br><br><br><br><br>
+                            </td> 
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-post">
+                 <table class="w3-table">
+                     <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-phone"></i></a><br><br>
+                           </td>
+                        <td> 
+                <h2>Phone</h2>
+                <p>
+                    <span>+1 403-220-7692</span>
+                </p><br><br><br><br><br>
+                              </td> 
+                    </tr> 
+                </table>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="w3-container w3-padding-64 w3-center w3-xlarge" >            
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		
 {% endblock %}
