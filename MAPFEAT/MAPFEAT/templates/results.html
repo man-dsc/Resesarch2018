@@ -7,20 +7,22 @@
                 <p class = "w3-opacity"> File and parameters uploaded! Here are the results. </p>
           </div>	
           		
-          <div class = "results">
+          <div class = "results indent">
                 <p class = " w3-opacity "> 10-fold cross validation results: <br>
+                <p>Quality of  your results:</p>    <br><br>
                 Precision: {{ precision }} <br> 
                 Accuracy: {{ accuracy }} <br>
                 Recall: {{ recall }} <br> 
-                F1: {{ F1 }} <br> 
+                F1 (balance of percision and recall: {{ F1 }} <br> 
                 Standard Deviation: {{ stdev }} </p>
           </div>		
           
-          <a href="features" class="but">
-          <div>
-          <p class = "w3-opacity w3-button"> <br><br> Results </p>
-              </div>
-          </a>
+          <a href="features" class="w3-button indent2">Results (OG) </a>
+
+<a href="ffroma" class="w3-button indent2">features extracted from each app</a>
+<!--<a href="" class="w3-button indent2">features per search queery</a>
+<a href="" class="w3-button indent2">all features w/ no redundency</a>-->
+
           
 {% endblock %}
 

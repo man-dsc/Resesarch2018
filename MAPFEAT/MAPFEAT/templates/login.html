@@ -1,6 +1,7 @@
 {% extends "pre-login-nav.html" %}
         
 <!--child template-->
+{% block head %}<script src='https://www.google.com/recaptcha/api.js'></script>{% endblock %}
 {% block content %}
 
       <h1>Please login</h1>
@@ -10,6 +11,8 @@
           request.form.username }}">
          <input type="password" placeholder="Password" name="password" value="{{
           request.form.password }}">
+         <br><br>
+           <br>
         <input class="btn btn-default" type="submit" value="Login">
       </form>
       {% if error %}

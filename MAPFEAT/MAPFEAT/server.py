@@ -27,11 +27,21 @@ from flask import Flask, render_template, request, redirect, url_for, flash, mak
 from flask import session, abort
 from wtforms import Field, TextField, widgets, SelectMultipleField, Form
 from wtforms.widgets import TextInput, html_params
+from flask_recaptcha import ReCaptcha
+from flask_wtf import RecaptchaField, FlaskForm
 
 from globa import *
 from functools import wraps
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
+
+
+
+
+from os.path import basename
+
+
+
 engine = create_engine('sqlite:///userpass.db', echo=True)
 
 reload(sys)  
@@ -42,6 +52,10 @@ sys.setdefaultencoding('utf8')
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
+#recaptcha = ReCaptcha(app=app)
+app.config['RECAPTCHA_PUBLIC_KEY'] = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
+app.config['RECAPTCHA_PRIVATE_KEY'] = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
+
 
 app.secret_key = '\xf9o\n\xfbP\xd4\xb7\xa6$\x1e\xb9\x8c\xb6\x06$\xce\xca\xeb\x14\x1cwo\xce\xec'
 
@@ -52,9 +66,13 @@ app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
 ALLOWED_EXTENSIONS = set(['csv'])
 
 
-
-
-
+#RECAPTCHA_ENABLED = True
+#RECAPTCHA_SITE_KEY = "6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"
+#RECAPTCHA_SECRET_KEY = "6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q"
+#RECAPTCHA_THEME = "dark"
+#RECAPTCHA_TYPE = "image"
+#RECAPTCHA_SIZE = "normal"
+#RECAPTCHA_RTABINDEX = 10
 
 
 
@@ -82,7 +100,8 @@ class parameters_2:
 parameters_2 = parameters_2(-1, -1, -1, -1)
 
 
-
+class LoginForm(FlaskForm):
+    recaptcha = RecaptchaField()
 
 
 
@@ -117,6 +136,9 @@ def dated_url_for(endpoint, **values):
 
 
 
+
+
+
 ''' login decorators'''
 def login_required(f):
     @wraps(f)
@@ -140,6 +162,7 @@ def home_():
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LoginForm()
     error = None
     if request.method == 'POST':
         
@@ -150,12 +173,17 @@ def login():
         s = Session()
         query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
         result = query.first()
-        if result:
+        
+        #if recaptcha.verify():
+            #print('yes verify')
+        
+        if result: #and recaptcha.verify():
             session['logged_in'] = True
             flash('successful login')
-            return redirect(url_for('post_home'))
+            #return redirect(url_for('post_home'))
+            return render_template('post_login_home.html', form=form)
         else:
-            error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> Suport@MAPFEAT.COM'
+            error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> ruhe@ucalgary.ca'
     return render_template('login.html', error=error)
         
 
@@ -172,7 +200,14 @@ def logout():
 @app.route('/post_home')
 @login_required
 def post_home():
-    return render_template('post_login_home.html')
+    if recaptcha.verify():
+        # SUCCESS
+        flash('good job son')
+        return render_template('post_login_home.html')
+    else:
+        # FAILED
+        return render_template('login.html', error=error)
+    
 
 
 @app.route('/first', methods = ['GET', 'POST'])
@@ -400,6 +435,12 @@ def about():
 def contact():
     return render_template('contact.html')
 
+
+
+
+
+
+
 ''' Features CSV '''
 @app.route('/features')
 @login_required
@@ -408,6 +449,48 @@ def features():
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
         dataset.csv = f.read()
     return dataset.html
+
+
+
+
+
+
+
+''' features per app '''
+@app.route('/ffroma')
+@login_required
+def ffroma():
+    print(os.getcwd())
+    print(os.listdir(os.curdir))
+    dic = {}
+    dic['app']=['features']
+    for dirpath, dirnames, filenames in os.walk('/users/manjeet.dev1/desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/ouput/features'):
+        print('current path:', dirpath)
+        print('directories:', dirnames)
+        print('files:', filenames)
+        print()
+    
+    
+    
+    
+    dataset = tablib.Dataset()
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
+        dataset.csv = f.read()
+    return dataset.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ''' About_postlogin Page '''
 @app.route('/about_postlogin')
