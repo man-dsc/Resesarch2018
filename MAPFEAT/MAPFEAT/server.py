@@ -39,7 +39,8 @@ from tabledef import *
 
 
 from os.path import basename
-
+import glob
+import pandas as pd
 
 
 engine = create_engine('sqlite:///userpass.db', echo=True)
@@ -433,6 +434,92 @@ def about():
 ''' Contact Page '''
 @app.route('/contact')
 def contact():
+    print(os.getcwd())
+    print(os.listdir(os.curdir))
+    dic = {}
+    dic['app']=['features']
+    print(dic)
+    
+    
+    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
+        print('')
+        print('')
+        print('current path:', dirpath)
+        print('directories:', dirnames)
+        print('files:', filenames)
+        print('#2')
+        for filename in filenames:
+            print('')
+            print('')
+            print(dirpath)
+            print('-0----0----0-0-')
+            print(dirnames)
+            print(filename)
+            
+            '''with open(dirpath + '/' + filename, mode='r') as csv_file:
+                csv_reader = csv.reader(csv_file)
+                read = []
+                print('working?')
+                for row in csv_reader:
+                    if len(row) !=0 :
+                        read = read + [row]
+                        
+                    'dict key = column 1 and dict value pair = list of column d' 
+                    'dic[column a] = [column d]'
+            csv_file.close()
+            
+            df = pd.DataFrame(read)
+            print(df)'''
+            
+            '''only appears to go over 1 dir, fix'''
+            
+            data = pd.read_csv(dirpath + '/' + filename)
+            i=0
+            print('DATA',data)
+            Count_Row=data.shape[0]
+            while (i < Count_Row):
+                print('ROW numbers', Count_Row)
+                column3 = data.iloc[i,2]
+                column1 = data.iloc[i,0]
+                print(column1 , column3)
+                str_col1 = ''.join(column1)
+                dic[str_col1]=column3
+                i+=1
+            
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    print('')
+    for keys,values in dic.items():
+        print('where its from')
+        print('')
+        print('filename')
+        print(filename)
+        print('')
+        print('dirname')
+        print(dirnames)
+        print('')
+        print('filenames')
+        print(filenames)
+        print('')
+        print('key')
+        print(keys)
+        print('')
+        print('value')        
+        print(values)    
+        print('')
+        print('')
+    print('')
+    print('')
+    
+
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'appf.csv'), 'wb') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in dic.items():
+            writer.writerow([key, value])
+           
     return render_template('contact.html')
 
 
@@ -464,13 +551,18 @@ def ffroma():
     print(os.listdir(os.curdir))
     dic = {}
     dic['app']=['features']
-    for dirpath, dirnames, filenames in os.walk('/users/manjeet.dev1/desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/ouput/features'):
+    
+    
+    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
         print('current path:', dirpath)
         print('directories:', dirnames)
         print('files:', filenames)
-        print()
-    
-    
+        print('#2')
+        for filenames in dirnames:
+            print('')
+            print('')
+            print('')
+            print(filenames)
     
     
     dataset = tablib.Dataset()
