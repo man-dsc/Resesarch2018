@@ -430,14 +430,57 @@ def home():
 ''' About Page '''
 @app.route('/about')
 def about():
+    dic2 ={}
+    dic2['search queery']=['features']
+    
+    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
+        print('')
+        print('')
+        print('current path:', dirpath)
+        print('directories:', dirnames)
+        print('files:', filenames)
+        print('#2')
+        for filename in filenames:
+            print('')
+            print('')
+            print(dirpath)
+            print('-0----0----0-0-')
+            print(dirnames)
+            print(filenames)
+            print(filename)
+    
+            data = pd.read_csv(dirpath + '/' + filename)
+            with open(dirpath + '/' + filename, 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    column3, column1 = row[2], filename
+                    str_col1 = ''.join(column1)
+                    dic2[str_col1]=column3
+    
+    
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'queerf.csv'), 'wb') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in dic2.items():
+            writer.writerow([key, value])   
+    
+    
+    
+    
+    
+    
+    
+    
     return render_template('about.html')
 
 ''' Contact Page '''
 @app.route('/contact')
 def contact():
+    
+    
     print(os.getcwd())
     print(os.listdir(os.curdir))
     dic = {}
+    
     dic['app']=['features']
     print(dic)
     
@@ -473,22 +516,30 @@ def contact():
             df = pd.DataFrame(read)
             print(df)'''
             
-            '''only appears to go over 1 dir, fix'''
+            '''------------only appears to go over 1 dir, fix'''
             
             data = pd.read_csv(dirpath + '/' + filename)
-            i=0
+            with open(dirpath + '/' + filename, 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    column3, column1 = row[2], row[0]
+                    str_col1 = ''.join(column1)
+                    dic[str_col1]=column3
+            '''i=0
             print('DATA',data)
             Count_Row=data.shape[0]
             while (i < Count_Row):
                 print('ROW numbers', Count_Row)
                 column3 = data.iloc[i,2]
+                print(column3)
                 column1 = data.iloc[i,0]
-                print(column1 , column3)
+                'print(column1 , column3)'
+                print('this is number', i)
                 str_col1 = ''.join(column1)
                 dic[str_col1]=column3
-                i+=1
+                i+=1'''
             
-    print('')
+    '''print('')
     print('')
     print('')
     print('')
@@ -514,13 +565,14 @@ def contact():
         print('')
         print('')
     print('')
-    print('')
+    print('')'''
     
 
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'appf.csv'), 'wb') as csv_file:
         writer = csv.writer(csv_file)
         for key, value in dic.items():
             writer.writerow([key, value])
+    
            
     return render_template('contact.html')
 
@@ -596,6 +648,7 @@ def about_postlogin():
 @app.route('/contact_postlogin')
 @login_required
 def contact_postlogin():
+    
     return render_template('contact_postlogin.html')
 
 
