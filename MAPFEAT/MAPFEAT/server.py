@@ -452,8 +452,9 @@ def about():
             data = pd.read_csv(dirpath + '/' + filename)
             with open(dirpath + '/' + filename, 'r') as f:
                 reader = csv.reader(f)
+                column1 = filename
                 for row in reader:
-                    column3, column1 = row[2], filename
+                    column3 = row[2]
                     str_col1 = ''.join(column1)
                     dic2[str_col1]=column3
     
