@@ -41,6 +41,7 @@ from tabledef import *
 from os.path import basename
 import glob
 import pandas as pd
+import re
 
 
 engine = create_engine('sqlite:///userpass.db', echo=True)
@@ -454,6 +455,7 @@ def contact():
             print(dirpath)
             print('-0----0----0-0-')
             print(dirnames)
+            print(filenames)
             print(filename)
             
             '''with open(dirpath + '/' + filename, mode='r') as csv_file:
