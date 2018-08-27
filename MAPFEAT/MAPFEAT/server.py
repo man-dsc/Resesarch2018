@@ -35,7 +35,7 @@ from functools import wraps
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
 
-
+import dummy
 
 
 from os.path import basename
@@ -202,13 +202,14 @@ def logout():
 @app.route('/post_home')
 @login_required
 def post_home():
-    if recaptcha.verify():
+    '''if recaptcha.verify():
         # SUCCESS
-        flash('good job son')
+        flash('good job ')
         return render_template('post_login_home.html')
     else:
         # FAILED
-        return render_template('login.html', error=error)
+        return render_template('login.html', error=error)'''
+    return render_template('post_login_home.html')
     
 
 
@@ -324,6 +325,7 @@ def results_screen1():
                 htmllist.append([i.encode('utf8') for i in row])
                 app.append(row[0])
                 dev.append(row[1])
+        print(biglist)
         data.append([app, dev])
         big_dict = {}
         small_dict = {}
@@ -425,13 +427,15 @@ def permit(filename):
 ''' Default Home '''
 @app.route('/home')
 def home():
+    
     return redirect(url_for('index'))
 
 ''' About Page '''
 @app.route('/about')
 def about():
+    
     dic2 ={}
-    dic2['search queery']=['features']
+    '''dic2['search queery']='features' '''
     
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
         print('')
@@ -453,36 +457,83 @@ def about():
             with open(dirpath + '/' + filename, 'r') as f:
                 reader = csv.reader(f)
                 column1 = filename
+                str_col1 = ''.join(column1)
+                str_col1 = str_col1.replace(".csv","")
+                str_col1 = str_col1.replace("+",",")
+                bigstr=''
                 for row in reader:
                     column3 = row[2]
-                    str_col1 = ''.join(column1)
-                    dic2[str_col1]=column3
+                    str_col3 = ''.join(column3)
+                    bigstr = bigstr + str_col3
+                '''if str_col1 in dic2:
+                    x=dic2.get(str_col1)
+                    bigstr = bigstr + x'''
+                    
+                '''^ dont need this, same features from both'''
+                bigstr = bigstr.replace(", []","")
+                bigstr = bigstr.replace("[","")
+                bigstr = bigstr.replace("]","")
+                bigstr = bigstr.replace("'","")
+                dic2[str_col1]=bigstr
+                
+                appslist.append([i.encode('utf8') for i in row])
     
     
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'queerf.csv'), 'wb') as csv_file:
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv'), 'wb') as csv_file:
         writer = csv.writer(csv_file)
+        writer.writerow(['Search Queery','Features'])
         for key, value in dic2.items():
+            writer.writerow(['',''])
             writer.writerow([key, value])   
     
+    '''dataset = tablib.Dataset()
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv')) as f:
+        dataset.csv = f.read()
+    return dataset.html'''
     
-    
-    
-    
-    
-    
+    return render_template('ffromq.html', dic2 = dic2)
     
     return render_template('about.html')
 
 ''' Contact Page '''
 @app.route('/contact')
 def contact():
+     
     
+    
+    return render_template('contact.html')
+
+
+
+
+
+
+
+''' Features CSV '''
+@app.route('/features')
+@login_required
+def features():
+    dataset = tablib.Dataset()
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
+        dataset.csv = f.read()
+    return dataset.html
+
+
+
+
+
+
+
+''' features per app '''
+@app.route('/ffroma')
+@login_required
+def ffroma():
     
     print(os.getcwd())
     print(os.listdir(os.curdir))
     dic = {}
     
-    dic['app']=['features']
+    ''' dic['app']=['features'] '''
     print(dic)
     
     
@@ -525,7 +576,13 @@ def contact():
                 for row in reader:
                     column3, column1 = row[2], row[0]
                     str_col1 = ''.join(column1)
-                    dic[str_col1]=column3
+                    str_col3 = ''.join(column3)
+                    str_col3 = str_col3.replace(", []","")
+                    str_col3 = str_col3.replace("[","")
+                    str_col3 = str_col3.replace("]","")
+                    str_col3 = str_col3.replace("'","")
+                    
+                    dic[str_col1]=str_col3
             '''i=0
             print('DATA',data)
             Count_Row=data.shape[0]
@@ -539,91 +596,83 @@ def contact():
                 str_col1 = ''.join(column1)
                 dic[str_col1]=column3
                 i+=1'''
-            
-    '''print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    print('')
-    for keys,values in dic.items():
-        print('where its from')
-        print('')
-        print('filename')
-        print(filename)
-        print('')
-        print('dirname')
-        print(dirnames)
-        print('')
-        print('filenames')
-        print(filenames)
-        print('')
-        print('key')
-        print(keys)
-        print('')
-        print('value')        
-        print(values)    
-        print('')
-        print('')
-    print('')
-    print('')'''
     
 
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'appf.csv'), 'wb') as csv_file:
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Apps.csv'), 'wb') as csv_file:
         writer = csv.writer(csv_file)
+        writer.writerow(['Application','Features Extracted'])
         for key, value in dic.items():
+            writer.writerow(['',''])
             writer.writerow([key, value])
     
-           
-    return render_template('contact.html')
-
-
-
-
-
-
-
-''' Features CSV '''
-@app.route('/features')
-@login_required
-def features():
     dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Apps.csv')) as f:
         dataset.csv = f.read()
+        
     return dataset.html
 
 
-
-
-
-
-
-''' features per app '''
-@app.route('/ffroma')
+''' features from queeries '''
+@app.route('/ffromq')
 @login_required
-def ffroma():
-    print(os.getcwd())
-    print(os.listdir(os.curdir))
-    dic = {}
-    dic['app']=['features']
-    
+def ffromq():
+    dic2 ={}
+    '''dic2['search queery']='features' '''
     
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
+        print('')
+        print('')
         print('current path:', dirpath)
         print('directories:', dirnames)
         print('files:', filenames)
         print('#2')
-        for filenames in dirnames:
+        for filename in filenames:
             print('')
             print('')
-            print('')
+            print(dirpath)
+            print('-0----0----0-0-')
+            print(dirnames)
             print(filenames)
+            print(filename)
+    
+            data = pd.read_csv(dirpath + '/' + filename)
+            with open(dirpath + '/' + filename, 'r') as f:
+                reader = csv.reader(f)
+                column1 = filename
+                str_col1 = ''.join(column1)
+                str_col1 = str_col1.replace(".csv","")
+                str_col1 = str_col1.replace("+",",")
+                bigstr=''
+                for row in reader:
+                    column3 = row[2]
+                    str_col3 = ''.join(column3)
+                    bigstr = bigstr + str_col3
+                '''if str_col1 in dic2:
+                    x=dic2.get(str_col1)
+                    bigstr = bigstr + x'''
+                    
+                '''^ dont need this, same features from both'''
+                bigstr = bigstr.replace(", []","")
+                bigstr = bigstr.replace("[","")
+                bigstr = bigstr.replace("]","")
+                bigstr = bigstr.replace("'","")
+                dic2[str_col1]=bigstr
     
     
-    dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv'), 'wb') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['Search Queery','Features'])
+        for key, value in dic2.items():
+            writer.writerow(['',''])
+            writer.writerow([key, value])   
+    
+    '''dataset = tablib.Dataset()
+    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv')) as f:
         dataset.csv = f.read()
-    return dataset.html
+    return dataset.html'''
+    
+    return render_template('ffromq.html', dic2 = dic2)
+    
 
 
 
@@ -631,12 +680,33 @@ def ffroma():
 
 
 
+''' forgot password '''
+@app.route('/forgotpass')
+def forgotpass():
+    return redirect("https://www.facebook.com/login/identify?ctx=recover&lwv=110&ars=royal_blue_bar", code=302)
 
 
 
-
-
-
+''' create new account '''
+@app.route('/newacc')
+def newacc():
+    
+    '''text1 = request.form['usernames']
+    text2 = request.form['passwords']
+    try:
+            
+        text1, text2 = str(text1), str(text2)
+          
+        parameters_2.keyword1 = text1
+        parameters_2.keyword2 = text2
+        
+        User.
+        
+        
+        
+        '''
+    
+    return redirect("https://www.facebook.com/", code=302)
 
 
 ''' About_postlogin Page '''
@@ -661,7 +731,7 @@ def post():
     cw = csv.writer(si)
     cw.writerows(biglist)
     output = make_response(si.getvalue())
-    output.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    output.headers["Content-Disposition"] = "attachment; filename=Apps_and_Devs.csv"
     output.headers["Content-type"] = "text/csv"
     return output
     

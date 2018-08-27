@@ -1,0 +1,23 @@
+{% extends "pre-login-nav.html" %}
+        
+<!--child template-->
+{% block content %}
+
+  <title> Create New Account </title>
+        <fieldset>
+                <legend>Create New Account</legend>
+            <label> Error: missing fields</label>
+            
+        <form action = "/newacc" method = "POST"> <br>
+          <input class = "w3-text"  type="text" name="usernames" placeholder = "Email">
+           Email/Username </input><br>
+
+            
+          <input class = "w3-text" type="text" name="passwords" placeholder="Password"> Password</input><br>
+
+        <input type="submit" value="Submit"></input>
+            <br>
+        </form>
+        </fieldset>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
