@@ -1,0 +1,47 @@
+{% extends "nosticky-post-nav.html" %}
+        
+<!--child template-->
+{% block content %}
+        <br>
+<table class ="w3-table-all w3-hoverable">
+  <tr>
+    <th class ="back"> Search Queery </th>
+    <th class ="back"> Features </th>
+ </tr>
+          <tr>
+              <td></td>
+              <td></td>
+            </tr>
+    {% for key in finallist %}
+  <tr>
+    <td> {{key[0].encode('utf8')}} </td>
+    <td> {{key[1].encode('utf8')}}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+		  <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+        <script src="d3.min.js?v=3.2.8"></script>
+
+        <script type="text/javascript"charset="utf-8">
+            d3.text("finalizedFeatures.csv", function(finalizedFeatures) {
+                var parsedCSV = d3.csv.parseRows(finalizedFeatures);
+
+                var container = d3.select("body")
+                    .append("table")
+
+                    .selectAll("tr")
+                        .appdata(parsedCSV).enter()
+                        .append("tr")
+
+                    .selectAll("td")
+                        .appdata(function(d) { return d; }).enter()
+                        .append("td")
+                        .text(function(d) { return d; });
+            });
+        </script>
+		<a href="getPlotCSV4" class="but">
+          <p class = "textrec"> <br><br> Download CSV </p>
+          </a>
+
+{% endblock %}

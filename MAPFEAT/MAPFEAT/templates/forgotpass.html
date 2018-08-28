@@ -1,0 +1,33 @@
+{% extends "pre-login-nav.html" %}
+        
+<!--child template-->
+{% block content %}
+
+  <title> Forgot my Password </title>
+        <fieldset>
+                <legend>Forgot Your Password?</legend>
+            
+            
+        <form action = "/forgotpass" method = "POST"> <br>
+          <input class = "w3-text"  type="text" name="usernames" placeholder = "Email">
+           Please Enter Your Email </input><br><br>
+
+
+        <input class= "button" type="submit" value="Submit" onclick = "thanks()"></input>
+            <br>
+        </form>
+        </fieldset>
+
+<script>
+function thanks() {
+    setTimeout(myTimeout1, 1000)  
+}
+function myTimeout1() {
+    document.getElementById("demo").innerHTML = "Please Check Your email (this may take a few minutes :), thankyou. )";
+}
+
+</script>
+
+      
+
+{% endblock %}

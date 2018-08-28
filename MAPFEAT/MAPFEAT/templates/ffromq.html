@@ -5,14 +5,14 @@
         <br>
 <table class ="w3-table-all w3-hoverable">
   <tr>
-    <th class ="back"> Developers </th>
+    <th class ="back"> Search Queery </th>
     <th class ="back"> Features </th>
  </tr>
           <tr>
               <td></td>
               <td></td>
             </tr>
-    {% for key in dic2 %}
+    {% for key in queerieslist %}
   <tr>
     <td> {{key[0].encode('utf8')}} </td>
     <td> {{key[1].encode('utf8')}}</td>
@@ -24,8 +24,8 @@
         <script src="d3.min.js?v=3.2.8"></script>
 
         <script type="text/javascript"charset="utf-8">
-            d3.text("features_from_Queeries.csv", function(appdata) {
-                var parsedCSV = d3.csv.parseRows(appdata);
+            d3.text("Features_from_Queeries.csv", function(Features_from_Queeries) {
+                var parsedCSV = d3.csv.parseRows(Features_from_Queeries);
 
                 var container = d3.select("body")
                     .append("table")
@@ -40,7 +40,7 @@
                         .text(function(d) { return d; });
             });
         </script>
-		<a href="getPlotCSV" class="but">
+		<a href="getPlotCSV2" class="but">
           <p class = "textrec"> <br><br> Download CSV </p>
           </a>
 

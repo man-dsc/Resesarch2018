@@ -21,6 +21,8 @@
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
+    text-align: center;
+    width: 50%;
 }
 
 @keyframes spin {
@@ -39,6 +41,8 @@
                 opacity: .5;
                 font-style: italic;
                 text-align: center;
+    width: 50%;
+    text-align: center;
                 }
 
 .but2 {
@@ -59,6 +63,31 @@
 .but2:hover {
     background-color: lightskyblue; /* Green */
     color: white;
+}
+
+.mid2{
+    margin: auto;
+    width: 50%;
+    /*height: 50%;*/
+    border: 1px solid green;
+    padding-top: 200px;
+    padding-left: 100px;
+    
+    
+    
+    
+}
+.mid{
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    border: 1px solid green;
+    padding-left: 100px;
+    padding-top:0px;
+    
+    
+    
+    
 }
 
 div#loading {
@@ -184,6 +213,7 @@ tr {
     right: 0px;
     margin-bottom: 0px !important;
     margin-top: 50px !important;
+    position: fixed;
     
 }
 
@@ -247,8 +277,11 @@ body {
 }
 
 #footer {
-  position: relative;
+  position: fixed;
   margin-top: -180px;
+    left: 0;
+   bottom: 0;
+    width: 100%;
   /* negative value of footer height */
   height: 180px;
   clear: both;

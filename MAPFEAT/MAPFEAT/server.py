@@ -43,6 +43,9 @@ import glob
 import pandas as pd
 import re
 
+#from flask_mail import Mail, Message
+
+#app.config[] -- set up mail server
 
 engine = create_engine('sqlite:///userpass.db', echo=True)
 
@@ -357,7 +360,7 @@ def results():
         sharedBetween = parameters.sharedBetween
         
         print(wordsPerTopic, numTopics, appLimit, sharedBetween)
-        
+        os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT')
         OUTPUT_PATH = 'output'
         
         # Create Output path
@@ -427,85 +430,29 @@ def permit(filename):
 ''' Default Home '''
 @app.route('/home')
 def home():
-    
     return redirect(url_for('index'))
+
+
+
+
+
 
 ''' About Page '''
 @app.route('/about')
 def about():
-    
-    dic2 ={}
-    '''dic2['search queery']='features' '''
-    
-    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
-        print('')
-        print('')
-        print('current path:', dirpath)
-        print('directories:', dirnames)
-        print('files:', filenames)
-        print('#2')
-        for filename in filenames:
-            print('')
-            print('')
-            print(dirpath)
-            print('-0----0----0-0-')
-            print(dirnames)
-            print(filenames)
-            print(filename)
-    
-            data = pd.read_csv(dirpath + '/' + filename)
-            with open(dirpath + '/' + filename, 'r') as f:
-                reader = csv.reader(f)
-                column1 = filename
-                str_col1 = ''.join(column1)
-                str_col1 = str_col1.replace(".csv","")
-                str_col1 = str_col1.replace("+",",")
-                bigstr=''
-                for row in reader:
-                    column3 = row[2]
-                    str_col3 = ''.join(column3)
-                    bigstr = bigstr + str_col3
-                '''if str_col1 in dic2:
-                    x=dic2.get(str_col1)
-                    bigstr = bigstr + x'''
-                    
-                '''^ dont need this, same features from both'''
-                bigstr = bigstr.replace(", []","")
-                bigstr = bigstr.replace("[","")
-                bigstr = bigstr.replace("]","")
-                bigstr = bigstr.replace("'","")
-                dic2[str_col1]=bigstr
-                
-                appslist.append([i.encode('utf8') for i in row])
-    
-    
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv'), 'wb') as csv_file:
-        writer = csv.writer(csv_file)
-        writer.writerow(['Search Queery','Features'])
-        for key, value in dic2.items():
-            writer.writerow(['',''])
-            writer.writerow([key, value])   
-    
-    '''dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv')) as f:
-        dataset.csv = f.read()
-    return dataset.html'''
-    
-    return render_template('ffromq.html', dic2 = dic2)
-    
     return render_template('about.html')
+
+
+
+
+
+
+
 
 ''' Contact Page '''
 @app.route('/contact')
 def contact():
-     
-    
-    
     return render_template('contact.html')
-
-
-
-
 
 
 
@@ -513,13 +460,33 @@ def contact():
 @app.route('/features')
 @login_required
 def features():
-    dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'finalizedFeatures.csv')) as f:
-        dataset.csv = f.read()
-    return dataset.html
+    
+    os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output')
+    file_reader = csv.reader(open('finalizedFeatures.csv', 'rb'), delimiter=',')
+    for row in file_reader:
+        finallist2.append([i.encode('utf8') for i in row])
+        if 'Application' in row:
+                continue
+        finallist.append([i.encode('utf8') for i in row])
+        
+    print(finallist)
+    print(finallist2)
 
 
+    return render_template('finalizedfeatures.html', finallist = finallist, finallist2 = finallist2)
+    
 
+@app.route('/getPlotCSV4')
+@login_required
+def post4():
+   
+    si = StringIO.StringIO()
+    cw = csv.writer(si)
+    cw.writerows(finallist2)
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=finalfeatures.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 
 
@@ -568,8 +535,6 @@ def ffroma():
             df = pd.DataFrame(read)
             print(df)'''
             
-            '''------------only appears to go over 1 dir, fix'''
-            
             data = pd.read_csv(dirpath + '/' + filename)
             with open(dirpath + '/' + filename, 'r') as f:
                 reader = csv.reader(f)
@@ -605,11 +570,33 @@ def ffroma():
             writer.writerow(['',''])
             writer.writerow([key, value])
     
-    dataset = tablib.Dataset()
+    '''dataset = tablib.Dataset()
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Apps.csv')) as f:
         dataset.csv = f.read()
         
-    return dataset.html
+    return dataset.html'''
+    
+    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output'):
+        print('')
+        print('')
+        print('current path:', dirpath)
+        print('directories:', dirnames)
+        print('files:', filenames)
+        print('#3')
+
+    os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output')    
+    file_reader = csv.reader(open('Features_from_Apps.csv', 'rb'), delimiter=',')
+    for row in file_reader:
+        appslist2.append([i.encode('utf8') for i in row])
+        if 'Application' in row:
+                continue
+        appslist.append([i.encode('utf8') for i in row])
+        
+    print(appslist)
+
+
+    return render_template('ffroma.html', dic = dic, appslist = appslist, appslist2 = appslist2)
+
 
 
 ''' features from queeries '''
@@ -657,6 +644,8 @@ def ffromq():
                 bigstr = bigstr.replace("]","")
                 bigstr = bigstr.replace("'","")
                 dic2[str_col1]=bigstr
+                
+                
     
     
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv'), 'wb') as csv_file:
@@ -664,49 +653,55 @@ def ffromq():
         writer.writerow(['Search Queery','Features'])
         for key, value in dic2.items():
             writer.writerow(['',''])
-            writer.writerow([key, value])   
+            writer.writerow([key, value])
+    
+    for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output'):
+        print('')
+        print('')
+        print('current path:', dirpath)
+        print('directories:', dirnames)
+        print('files:', filenames)
+        print('#3')
+
+    os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output')    
+    file_reader = csv.reader(open('Features_from_Queeries.csv', 'rb'), delimiter=',')
+    for row in file_reader:
+        queerieslist2.append([i.encode('utf8') for i in row])
+        if 'Search Queery' in row:
+                continue
+        queerieslist.append([i.encode('utf8') for i in row])
+        
+    print(queerieslist)
     
     '''dataset = tablib.Dataset()
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv')) as f:
         dataset.csv = f.read()
     return dataset.html'''
     
-    return render_template('ffromq.html', dic2 = dic2)
+    return render_template('ffromq.html', dic2 = dic2, queerieslist = queerieslist, queerieslist2 = queerieslist2)
+    
     
 
-
-
-
-
-
-
 ''' forgot password '''
-@app.route('/forgotpass')
+@app.route('/forgotpass', methods = ['GET', 'POST'])
 def forgotpass():
-    return redirect("https://www.facebook.com/login/identify?ctx=recover&lwv=110&ars=royal_blue_bar", code=302)
+    if request.method == 'POST': 
+        try:   
+            text1 = request.form['usernames']
+            text1 = str(text1)      
+            parameters_2.keyword1 = text1
+            flash('Please Check Your email (this may take a few minutes :)')
+            return render_template('forgotpass.html')
+        except:
+            return render_template('forgotpass.html')
+    return render_template('forgotpass.html')
 
 
 
 ''' create new account '''
 @app.route('/newacc')
 def newacc():
-    
-    '''text1 = request.form['usernames']
-    text2 = request.form['passwords']
-    try:
-            
-        text1, text2 = str(text1), str(text2)
-          
-        parameters_2.keyword1 = text1
-        parameters_2.keyword2 = text2
-        
-        User.
-        
-        
-        
-        '''
-    
-    return redirect("https://www.facebook.com/", code=302)
+    return render_template('New_Account.html')
 
 
 ''' About_postlogin Page '''
@@ -734,8 +729,31 @@ def post():
     output.headers["Content-Disposition"] = "attachment; filename=Apps_and_Devs.csv"
     output.headers["Content-type"] = "text/csv"
     return output
+
+
+@app.route('/getPlotCSV2')
+@login_required
+def post2():
+   
+    si = StringIO.StringIO()
+    cw = csv.writer(si)
+    cw.writerows(queerieslist2)
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=features_and_queeries.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output  
     
-    
+@app.route('/getPlotCSV3')
+@login_required
+def post3():
+   
+    si = StringIO.StringIO()
+    cw = csv.writer(si)
+    cw.writerows(appslist2)
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=features_and_apps.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
     
 if __name__ == '__main__':
     app.run(port = 4000)
