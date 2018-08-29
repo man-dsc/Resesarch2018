@@ -3,12 +3,33 @@
 <!--child template-->
 {% block head %}{% endblock %}
 {% block content %}
+<style>
+    .dog{
+   
+        border: 3px dashed #201104 ;
+        height: 300px;
+        width: 400px;
+    }
+    .bid{
+        position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -200px;
+        text-align: center;
+        
+        
+    }
 
-      <h1 class ="mid2">Please login</h1>
+</style>
+
+
+<div class ="bid dog">
+      <h1 >Please login</h1>
       
-      <form action="" method="post" class = "mid">
+      <form action="" method="post" >
         <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
+          request.form.username }}"> <br>
          <input type="password" placeholder="Password" name="password" value="{{
           request.form.password }}">
          <br>
@@ -17,17 +38,18 @@
           <br><br>
           
         <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
+            <label><input type="checkbox" name="remember"> Remember me</label>
         </div>
           <br>
          
-        <div class="g-recaptcha" data-sitekey="6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"></div> <br> 
+        <div class="g-recaptcha" style="align-content: center; position: relative; left: 45px" data-sitekey="6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"></div> <br>
+          {{ recaptcha }}
           
         <input class="w3-button" type="submit" value="Login">
           
         
       </form>
-
+</div>
     
 
 

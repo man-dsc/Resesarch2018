@@ -69,7 +69,7 @@
     margin: auto;
     width: 50%;
     /*height: 50%;*/
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     padding-top: 200px;
     padding-left: 100px;
     
@@ -83,10 +83,9 @@
     height: 50%;
     border: 1px solid green;
     padding-left: 100px;
-    padding-top:0px;
+    padding-top:0px; 
     
-    
-    
+
     
 }
 

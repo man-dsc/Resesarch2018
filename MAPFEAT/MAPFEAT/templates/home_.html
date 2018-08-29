@@ -16,19 +16,18 @@
         
             <style>
             .centered {
-                position: absolute;
-                top: 15%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                position: relative;
+                
                 font-family: Verdana, Geneva, sans-serif;
                 font-size: 40px;
                 font-weight: bold;
-                opacity: .5;
                 font-style: italic;
+                text-align: center;
                 }
                 .center{
                     text-align: center !important;
-                    left: 50% !important;
+                    left: 5% !important;
+                    
                     
                 }
             </style>
@@ -56,9 +55,162 @@
             <h1>MAPFEAT HOME</h1>
         </div>-->
         
-        <section class="w3-container w3-center " style="max-width:600px">
+        <section class=" center centered" style="max-width:90%">
             <h2 class="w3-wide ">MAPFEAT
-            <p class="w3-opacity "><i>Application Mining</i></p>
+               
+            <p class="w3-opacity "><i>This web-based tool is a Python implementaton 
+                of MAPFEAT, a method that introduces software features to emergency 
+                apps by automating the mining of needs from general purpose tweets 
+                and their translation into real app features. The tool has been 
+                evaluated by a case study of the 2016 wildfire in Fort McMurray, 
+                Canada, in which it identified a significant amount of new and 
+                valuable functionality. The process by which MAPFEAT works is
+                depicted in the figure below.</i></p>
             </h2>
+        </section>
+
+<hr>
+
+        <section>
+                 <div class="text center"><h1>Contact us Monday to Friday 8:00 - 17:00 MST</h1></div>
+
+<style>
+    .text{
+        text-indent: 50px
+        
+    }
+    .info-box{
+        
+    }
+    
+    .row1{
+        columns: 150px 3;
+        column-gap: 0;
+        column-rule: 1px dotted #ddd;
+        
+    }
+    
+    .col-md-4{
+         text-decoration: none;
+         color: black;
+         display: block;
+         padding: 1em;
+         text-align: center;
+         /*border-bottom: 1px solid #1a242f;*/
+        
+    }
+    
+    .info-post{
+        
+    }
+    
+    table, th, td {
+        border: 0px solid black;
+        
+    }
+    table{
+        border-collapse:collapse;
+        border: none;
+        border-top: none;
+    }
+
+		.n-bordered{
+			border: none;
+		}
+
+		.bordered td, .n-bordered td{
+			border: 1px solid black;
+		}
+
+		.n-bordered tr:first-child td{
+			border-top: none;
+		}
+
+		.n-bordered tr:last-child td{
+			border-bottom: none;
+		}
+
+		.n-bordered tr td:first-child{
+			border-left: none;
+		}
+
+		.n-bordered tr td:last-child{
+			border-right: none;
+		}
+    .posit{
+        position: relative;
+        
+        
+        
+    }
+    
+</style>
+
+<div class = "info-box">
+    <div class="row1">
+        <div class="col-md-4">
+            <div class="info-post w3-center">
+                <table class="w3-table">
+                    <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-map-marker"></i></a><br><br>
+                       </td>
+                        <td> 
+                <h2>Address</h2>            
+                <p>Guenther Ruhe</p>
+                <p>University of Calgary
+                <br>
+                
+                                    2500 University Drive NW
+                <br>
+                
+                                    Calgary, Alberta, Canada T2N 1N4
+
+                </p><br><br>
+                       </td> 
+                    </tr> 
+                </table> 
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-post">
+                 <table class="w3-table">
+                     <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-envelope-o "></i></a><br><br>
+                           </td>
+                        <td> 
+                <h2>Email</h2>
+                <p>
+                    <a href="mailto:Ruhe@ucalgary.ca?Subject=Hello%20Dr.Ruhe" target="_top">Ruhe@ucalgary.ca</a>
+                    <a href="#"></a>
+                </p><br><br><br><br><br>
+                            </td> 
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-post">
+                 <table class="w3-table">
+                     <tr>
+                       <td> 
+                <a href="#"><i class="fa fa-phone"></i></a><br><br>
+                           </td>
+                        <td> 
+                <h2>Phone</h2>
+                <p>
+                    <span>+1 403-220-7692</span>
+                </p><br><br><br><br><br>
+                              </td> 
+                    </tr> 
+                </table>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
         </section>
 {% endblock %}

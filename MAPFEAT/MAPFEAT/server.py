@@ -43,6 +43,8 @@ import glob
 import pandas as pd
 import re
 
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+
 #from flask_mail import Mail, Message
 
 #app.config[] -- set up mail server
@@ -52,12 +54,13 @@ engine = create_engine('sqlite:///userpass.db', echo=True)
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-
+RECAPTCHA_PUBLIC_KEY = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
+RECAPTCHA_PRIVATE_KEY = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
 
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
-#recaptcha = ReCaptcha(app=app)
+recaptcha = ReCaptcha(app=app)
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
 
@@ -78,8 +81,20 @@ ALLOWED_EXTENSIONS = set(['csv'])
 #RECAPTCHA_TYPE = "image"
 #RECAPTCHA_SIZE = "normal"
 #RECAPTCHA_RTABINDEX = 10
+#reCaptcha.init(app, site_key, secret_key, is_enabled=True)
 
+'''def checkRecaptcha(response, secretkey):
+        url = 'https://www.google.com/recaptcha/api/siteverify?'
+        url = url + 'secret=' + str(secretkey)
+        url = url + '&response=' +str(response)
 
+        jsonobj = json.loads(urllib2.urlopen(url).read())
+        print jsonobj['success']
+        if jsonobj['success']:
+            print jsonobj['success']
+            return True
+        else:
+            return False'''
 
 ''' Instantiation of class check boxes '''
 
@@ -173,7 +188,9 @@ def login():
         
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
- 
+        
+        response = request.form.get('g-recaptcha-response')
+        
         Session = sessionmaker(bind=engine)
         s = Session()
         query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
@@ -181,10 +198,15 @@ def login():
         
         #if recaptcha.verify():
             #print('yes verify')
-        
-        if result: #and recaptcha.verify():
+        if request.form.get('remember'):
+            print('dog,cat')
+            remember = True
+        print(recaptcha.verify())
+        #print(g-recaptcha-response)
+        if result and recaptcha.verify(): #and recaptcha.verify():
             session['logged_in'] = True
             flash('successful login')
+            #login_user(user, remember=form.remember_me.data)
             #return redirect(url_for('post_home'))
             return render_template('post_login_home.html', form=form)
         else:
