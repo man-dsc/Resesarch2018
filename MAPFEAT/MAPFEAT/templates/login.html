@@ -1,12 +1,12 @@
 {% extends "pre-login-nav.html" %}
         
 <!--child template-->
-{% block head %}{% endblock %}
+{% block head %}<script src='https://www.google.com/recaptcha/api.js'></script>{% endblock %}
 {% block content %}
 <style>
     .dog{
    
-        border: 3px dashed #201104 ;
+        /*border: 3px dashed #201104*/ ;
         height: 300px;
         width: 400px;
     }
@@ -20,6 +20,12 @@
         
         
     }
+    .most{
+        position: relative;
+        text-align: left !important;
+        
+        
+    }
 
 </style>
 
@@ -29,23 +35,24 @@
       
       <form action="" method="post" >
         <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}"> <br>
+          request.form.username }}"> <br><br>
          <input type="password" placeholder="Password" name="password" value="{{
           request.form.password }}">
-         <br>
+         <br><br>
           <a href="newacc" >Create Account</a>
         <a href="forgotpass" class ="indent3">Forgot My Password</a>
           <br><br>
           
         <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Remember me</label>
+            <label>
+                <input type="checkbox" name="remember"> Remember me</label>
         </div>
           <br>
          
         <div class="g-recaptcha" style="align-content: center; position: relative; left: 45px" data-sitekey="6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"></div> <br>
           {{ recaptcha }}
           
-        <input class="w3-button" type="submit" value="Login">
+        <input class="w3-button most" type="submit" value="Login">
           
         
       </form>

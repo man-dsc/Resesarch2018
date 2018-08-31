@@ -44,6 +44,7 @@ import pandas as pd
 import re
 
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+#from flask_sqlalchemy import SQLAlchemy
 
 #from flask_mail import Mail, Message
 
@@ -64,6 +65,7 @@ recaptcha = ReCaptcha(app=app)
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
 
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/manjeet.dev1/Desjtio/login.db'
 
 app.secret_key = '\xf9o\n\xfbP\xd4\xb7\xa6$\x1e\xb9\x8c\xb6\x06$\xce\xca\xeb\x14\x1cwo\xce\xec'
 
@@ -73,7 +75,18 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
 ALLOWED_EXTENSIONS = set(['csv'])
 
+login_manager = LoginManager()
+login_manager.init_app(app)
 
+#db = SQLAlchemy(app)
+
+#class User(UserMixin, db.Model):
+    #id = db.Column(db.Integer, primary_key=True)
+    #username = db.Column(db.string(30), unique=True)
+    
+@login_manager.user_loader
+def load_user(user_id):
+    return user.query.get(int(user_id))
 #RECAPTCHA_ENABLED = True
 #RECAPTCHA_SITE_KEY = "6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"
 #RECAPTCHA_SECRET_KEY = "6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q"
@@ -171,6 +184,14 @@ def login_required(f):
     return wrap
 
 
+
+
+
+
+
+
+
+
 ''' Start Page '''
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -195,6 +216,9 @@ def login():
         s = Session()
         query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
         result = query.first()
+        print(query)
+        print('query^')
+        print(result)
         
         #if recaptcha.verify():
             #print('yes verify')
@@ -206,9 +230,13 @@ def login():
         if result and recaptcha.verify(): #and recaptcha.verify():
             session['logged_in'] = True
             flash('successful login')
+            
+            #login_user(request.form['username'],remember=True,duration=200,force=False,fresh=True)
+            
+            login_user(User,True)
             #login_user(user, remember=form.remember_me.data)
             #return redirect(url_for('post_home'))
-            return render_template('post_login_home.html', form=form)
+            return render_template('index.html', form=form)
         else:
             error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> ruhe@ucalgary.ca'
     return render_template('login.html', error=error)
@@ -310,18 +338,27 @@ def screen1():
             
             checks = ''
             if 'apple' in response:
+                #print('APPLE')
                 checks += '1'
+                
             if 'google' in response:
+                
                 checks += '2'
-            
+                #print('#5')
             data = [checks, text1, text2, text3, text4]
-           
+            #print('#6')
             
             with open("querys.csv", "wb") as fin:
+                #print('#1')
                 writer = csv.writer(fin)
+                #print(writer)
+                #print('#2')
                 for row in data:
+                    #print('#3')
                     writer.writerow([row])
-                    
+                    #print('#4')
+                    #print(row)
+                   
             
             
             return redirect(url_for('results_screen1')) 
@@ -337,28 +374,31 @@ def screen1():
 @login_required
 def results_screen1():
     if request.method == 'GET':
-        querysearch.search()
-        data = []
-        app =[]
-        dev =[]
-        htmllist=[]
-        file_reader = csv.reader(open('appdata.csv', 'rb'), delimiter=',')
+        try:
+            querysearch.search()
+            data = []
+            app =[]
+            dev =[]
+            htmllist=[]
+            file_reader = csv.reader(open('appdata.csv', 'rb'), delimiter=',')
 
-        for row in file_reader:
-            if len(row)>=2:
-                biglist.append([i.encode('utf8') for i in row])
-                htmllist.append([i.encode('utf8') for i in row])
-                app.append(row[0])
-                dev.append(row[1])
-        print(biglist)
-        data.append([app, dev])
-        big_dict = {}
-        small_dict = {}
-        for i in range(len(app)):
-            big_dict[app[i]]= dev[i]
-        for i in range(len(app)):
-            small_dict[dev[i]]= app[i]
-        length_dict=len(big_dict)
+            for row in file_reader:
+                if len(row)>=2:
+                    biglist.append([i.encode('utf8') for i in row])
+                    htmllist.append([i.encode('utf8') for i in row])
+                    app.append(row[0])
+                    dev.append(row[1])
+            print(biglist)
+            data.append([app, dev])
+            big_dict = {}
+            small_dict = {}
+            for i in range(len(app)):
+                big_dict[app[i]]= dev[i]
+            for i in range(len(app)):
+                small_dict[dev[i]]= app[i]
+            length_dict=len(big_dict)
+        except:
+            return('Sorry, Please Try Again')
  
      
         return render_template('results_screen1.html', big_dict=big_dict,
@@ -486,6 +526,8 @@ def features():
     os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output')
     file_reader = csv.reader(open('finalizedFeatures.csv', 'rb'), delimiter=',')
     for row in file_reader:
+        if row[1] == '':
+            continue
         finallist2.append([i.encode('utf8') for i in row])
         if 'Application' in row:
                 continue
@@ -564,12 +606,15 @@ def ffroma():
                     column3, column1 = row[2], row[0]
                     str_col1 = ''.join(column1)
                     str_col3 = ''.join(column3)
-                    str_col3 = str_col3.replace(", []","")
-                    str_col3 = str_col3.replace("[","")
-                    str_col3 = str_col3.replace("]","")
-                    str_col3 = str_col3.replace("'","")
-                    
-                    dic[str_col1]=str_col3
+                    if str_col3 != '[]':
+                        str_col3 = str_col3.replace(", []","")
+                        str_col3 = str_col3.replace("[[","[")
+                        str_col3 = str_col3.replace("]]","]")
+                        str_col3 = str_col3.replace("'","")
+                        str_col3 = str_col3.replace("[],","")
+
+
+                        dic[str_col1]=str_col3
             '''i=0
             print('DATA',data)
             Count_Row=data.shape[0]
@@ -589,7 +634,7 @@ def ffroma():
         writer = csv.writer(csv_file)
         writer.writerow(['Application','Features Extracted'])
         for key, value in dic.items():
-            writer.writerow(['',''])
+            #writer.writerow(['',''])
             writer.writerow([key, value])
     
     '''dataset = tablib.Dataset()
@@ -661,11 +706,22 @@ def ffromq():
                     bigstr = bigstr + x'''
                     
                 '''^ dont need this, same features from both'''
-                bigstr = bigstr.replace(", []","")
-                bigstr = bigstr.replace("[","")
-                bigstr = bigstr.replace("]","")
-                bigstr = bigstr.replace("'","")
-                dic2[str_col1]=bigstr
+                #bigstr = bigstr.replace(", []","")
+                #str_col3 = str_col3.replace("[[","[")
+                #str_col3 = str_col3.replace("]]","]")
+                #str_col3 = str_col3.replace("'","")
+                if bigstr != '[]':
+                        #bigstr = bigstr.replace(", []",",")
+                    bigstr = bigstr.replace("][","")
+                    bigstr = bigstr.replace("[], ","")
+                    bigstr = bigstr.replace("[]","")
+                    bigstr = bigstr.replace("[[","[")
+                    bigstr = bigstr.replace("]]","]")
+                    bigstr = bigstr.replace("'","")
+                        #bigstr = bigstr.replace("[],","")
+                    #bigstr = bigstr.replace("[]","")
+                
+                    dic2[str_col1]=bigstr
                 
                 
     
@@ -674,7 +730,7 @@ def ffromq():
         writer = csv.writer(csv_file)
         writer.writerow(['Search Queery','Features'])
         for key, value in dic2.items():
-            writer.writerow(['',''])
+            #writer.writerow(['',''])
             writer.writerow([key, value])
     
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output'):

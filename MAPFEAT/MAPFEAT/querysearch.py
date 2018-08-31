@@ -24,16 +24,21 @@ def search():
     #from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
     def powerset(s):
+        print('a')
         r = [[]]
         for e in s:
+            print('b')
             r += [x+[e] for x in r]
         return r
+    print('c')
 
     def get_apps(html_source, num3, query):    
+        print('d')
         soup = bs4.BeautifulSoup(html_source,'html.parser') 
 
         # return a list of tuples: (appname, link, packname)
         if num3 == 0:
+            print('e')
             #tags = soup.findAll('a', class_='title', href=re.compile('^'))
             #return[(tag)]
             headers = {
@@ -44,10 +49,16 @@ def search():
             result = requests.get(endPoint, headers=headers)
             print(result)
             try:
+                print('f')
                 apps = result.json()['results']
+                #print(apps)
+                print('g')
             except ValueError:
+                print('errpor')
+                
                 return
             if apps:
+                print('h')
                 rowdata = []
                 for pair in apps:
                     name = pair.get('trackName').replace('&nbsp;', '').encode("utf-8")
@@ -59,19 +70,24 @@ def search():
                     rowdata.append([name, dev])
                 return rowdata
         if num3 == 1:
+            print('i')
             #get all the apps on the page 
             tags = soup.findAll('a', class_='title', href=re.compile('^/store/apps/details'))
             href_start = 'https://play.google.com'
             print(tags) 
             return [(tag['title'], href_start+tag['href'], tag['href'][tag['href'].rfind('=')+1:]) for tag in tags]
-
+    
+    print('j')
+    
     def get_last_on_page(html_source):
+        print('s')
         # return the appname of the last app on the page 
         # used to check if a dev has a small amount of apps
         # does not need to 'scroll to end'
         soup = bs4.BeautifulSoup(html_source,'html.parser') 
         tags = soup.findAll('a', class_='title', href=re.compile('^/store/apps/details'))
         return tags[-1]['title'] 
+        
 
     def scroll_to_end(browser):
         # scrolls to the end of the page and hits the "show more" button 
@@ -209,8 +225,11 @@ def search():
                 skipped.append(q)
                 continue
             apps = get_apps(html_source, num3, q) # a list of tuples (appname,link,packname)
-            print('found', len(apps), 'apps for query:',q)
-            tot_apps += len(apps)
+            print('sd')
+            #print('found', len(apps), 'apps for query:',q)
+            if apps is not None:
+                
+                tot_apps += len(apps)
             apps2.append(apps)
             #write_to_csv(devname)
 
@@ -246,12 +265,24 @@ def search():
             print(On)
             if num == 0 and '1' in On:
                 apps3 = apps[0]
-                for app in apps:
-                    print(len(app), num)
-
-                    for ap in app:
-                        writer.writerow([ap[0], ap[1]])
-
+                try:
+                    if apps is not None:
+                        for app in apps:
+                            if app is not None:
+                                print(app)
+                                try:
+                                    print(len(app), num)
+                                except:
+                                    print('exceptdsfa')
+                                for ap in app:
+                                    
+                                    try:
+                                        writer.writerow([ap[0], ap[1]])
+                                    except:
+                                        print([ap[0],ap[1]])
+                except:
+                    print('2 error')
+            print("here")
             if num == 1 and '2' in On:
                 for app in apps:
                     #print(app)
