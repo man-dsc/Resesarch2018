@@ -43,7 +43,9 @@ import glob
 import pandas as pd
 import re
 
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+
 #from flask_sqlalchemy import SQLAlchemy
 
 #from flask_mail import Mail, Message
@@ -61,6 +63,13 @@ RECAPTCHA_PRIVATE_KEY = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
 ''' Instantiation of Flask class and environment variables '''
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/mapfeat/mapfeat/login.db'
+app.config['SECRET_KEY'] = 'thisissecret'
+
+db = SQLAlchemy(app)
+
 recaptcha = ReCaptcha(app=app)
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q'
@@ -78,15 +87,44 @@ ALLOWED_EXTENSIONS = set(['csv'])
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-#db = SQLAlchemy(app)
+class User(db.Model):
+    """An admin user capable of viewing reports.
 
-#class User(UserMixin, db.Model):
-    #id = db.Column(db.Integer, primary_key=True)
-    #username = db.Column(db.string(30), unique=True)
+    :param str email: email address of user
+    :param str password: encrypted password for the user
+
+    """
+    __tablename__ = 'user'
+
+    email = db.Column(db.String, primary_key=True)
+    password = db.Column(db.String)
+    authenticated = db.Column(db.Boolean, default=False)
+
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        return self.email
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False
     
 @login_manager.user_loader
-def load_user(user_id):
-    return user.query.get(int(user_id))
+def user_loader(user_id):
+    """Given *user_id*, return the associated User object.
+
+    :param unicode user_id: user_id (email) user to retrieve
+
+    """
+    return User.query.get(user_id)
+
 #RECAPTCHA_ENABLED = True
 #RECAPTCHA_SITE_KEY = "6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"
 #RECAPTCHA_SECRET_KEY = "6Ld6aWYUAAAAAAAQ4cT6H45PTzrKcs27vlJrCr1q"
