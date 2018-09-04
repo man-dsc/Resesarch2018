@@ -15,8 +15,12 @@
 {% endblock %}
 	
 {% block content %}
-			<div align = "center">
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script></div>
+
+
+
+
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
 			
 		{% for message in get_flashed_messages() %}
             {{ message }}
@@ -58,6 +62,7 @@
     <div class=waiting>                                                                                                 <!--    div 5  -->  
     <div id="loading">                                                                                                     <!--       div 6  -->  
         <p>
+            <IMG SRC="/static/ajax-loader.gif">
     <h1>Loading...</h1>
         </p>
     </div>                                                                                                                 <!--       end div 6  -->  

@@ -42,6 +42,7 @@ from os.path import basename
 import glob
 import pandas as pd
 import re
+import urllib2
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
@@ -49,8 +50,6 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, curren
 from flask_mail import Mail
 mail = Mail()
 
-from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import TextField
 
 #from flask_sqlalchemy import SQLAlchemy
 
@@ -99,22 +98,7 @@ ALLOWED_EXTENSIONS = set(['csv'])
 #RECAPTCHA_RTABINDEX = 10
 #reCaptcha.init(app, site_key, secret_key, is_enabled=True)
 
-'''def checkRecaptcha(response, secretkey):
-        url = 'https://www.google.com/recaptcha/api/siteverify?'
-        url = url + 'secret=' + str(secretkey)
-        url = url + '&response=' +str(response)
 
-        jsonobj = json.loads(urllib2.urlopen(url).read())
-        print jsonobj['success']
-        if jsonobj['success']:
-            print jsonobj['success']
-            return True
-        else:
-            return False'''
-
-class SignupForm(FlaskForm):
-    recaptcha = RecaptchaField()
-    
 
 
 ''' Instantiation of class check boxes '''
@@ -206,6 +190,29 @@ def login_required(f):
 def home_():
     return render_template('home_.html')
 
+
+def checkRecaptcha(response, secretkey):
+    print('#1')
+    url = 'https://www.google.com/recaptcha/api/siteverify?'
+    print('#1')
+    url = url + 'secret=' + str(secretkey)
+    print('#1')
+    url = url + '&response=' +str(response)
+    print('#1')
+
+    jsonobj = json.loads(urllib2.urlopen(url).read())
+    print('#1')
+    print jsonobj['success']
+    print('#1')
+    if jsonobj['success']:
+        print('#2')
+        print jsonobj['success']
+        return True
+    else:
+        print('#3')
+        return False
+
+
 '''login page'''
 
 # Route for handling the login page logic
@@ -213,27 +220,34 @@ def home_():
 def login():
     form = LoginForm()
     error = None
+    cat = False
     if request.method == 'POST':
         print('cow')
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
         
-        response = request.form.get('g-recaptcha-response')
+
         
         Session = sessionmaker(bind=engine)
         s = Session()
         query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
         result = query.first()
      
+        response = request.form.get('g-recaptcha-response')
         
         #if recaptcha.verify():
             #print('yes verify')
         if request.form.get('remember'):
             print('dog,cat')
             remember = True
-        print(recaptcha.verify())
+        #print(recaptcha.verify())
         #print(g-recaptcha-response)
-        if result and recaptcha.verify(): #and recaptcha.verify():
+    
+        #recaptcha = RecaptchaField()
+        if checkRecaptcha(response, RECAPTCHA_PRIVATE_KEY):
+            print("hi bud")
+            cat = True
+        if result and cat: #and recaptcha.verify(): #and recaptcha.verify():
             session['logged_in'] = True
             flash('successful login')
             
@@ -242,7 +256,7 @@ def login():
             #login_user(User,True)
             #login_user(user, remember=form.remember_me.data)
             #return redirect(url_for('post_home'))
-            return render_template('index.html', form=form)
+            return redirect(url_for('index'))
         else:
             error = 'Invalid Credentials. Please try again.\n\n Contact Suport -> ruhe@ucalgary.ca'
     return render_template('login.html', error=error)
@@ -734,7 +748,7 @@ def ffromq():
     
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Queeries.csv'), 'wb') as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow(['Search Queery','Features'])
+        writer.writerow(['Search Query','Features'])
         for key, value in dic2.items():
             #writer.writerow(['',''])
             writer.writerow([key, value])
@@ -751,7 +765,7 @@ def ffromq():
     file_reader = csv.reader(open('Features_from_Queeries.csv', 'rb'), delimiter=',')
     for row in file_reader:
         queerieslist2.append([i.encode('utf8') for i in row])
-        if 'Search Queery' in row:
+        if 'Search Query' in row:
                 continue
         queerieslist.append([i.encode('utf8') for i in row])
         

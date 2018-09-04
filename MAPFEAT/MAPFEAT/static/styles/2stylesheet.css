@@ -95,10 +95,14 @@ div#loading {
     width: 50%;
     height: 50px;
     display: none;
-    background: url(/static/ajax-loader.gif) no-repeat;
+    /*background: url(/static/ajax-loader.gif) no-repeat; */
     cursor: wait;
     margin: auto;
     padding: 70px 0;
+    
+    width: 50%;
+    /*border: 3px solid green; */
+    padding: 10px;
     }
 
 .textbox {
@@ -110,6 +114,7 @@ div#loading {
         display:block;
         outline:0
         z-index: -1;
+    
     }
 .w3-text {
 
@@ -227,6 +232,16 @@ th.back{
     background-color: #4CAF50;
 }
 
+
+    .newn{
+        
+        margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+        
+        
+    }
 
 
 
