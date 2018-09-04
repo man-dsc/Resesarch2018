@@ -46,6 +46,12 @@ import re
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 
+from flask_mail import Mail
+mail = Mail()
+
+from flask_wtf import FlaskForm, RecaptchaField
+from wtforms import TextField
+
 #from flask_sqlalchemy import SQLAlchemy
 
 #from flask_mail import Mail, Message
@@ -68,7 +74,7 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/mapfeat/mapfeat/login.db'
 app.config['SECRET_KEY'] = 'thisissecret'
 
-db = SQLAlchemy(app)
+
 
 recaptcha = ReCaptcha(app=app)
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4'
@@ -83,47 +89,6 @@ OUTPUT_FOLDER = os.path.dirname(os.path.realpath(__file__)) + '/output/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
 ALLOWED_EXTENSIONS = set(['csv'])
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-class User(db.Model):
-    """An admin user capable of viewing reports.
-
-    :param str email: email address of user
-    :param str password: encrypted password for the user
-
-    """
-    __tablename__ = 'user'
-
-    email = db.Column(db.String, primary_key=True)
-    password = db.Column(db.String)
-    authenticated = db.Column(db.Boolean, default=False)
-
-    def is_active(self):
-        """True, as all users are active."""
-        return True
-
-    def get_id(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
-        return self.email
-
-    def is_authenticated(self):
-        """Return True if the user is authenticated."""
-        return self.authenticated
-
-    def is_anonymous(self):
-        """False, as anonymous users aren't supported."""
-        return False
-    
-@login_manager.user_loader
-def user_loader(user_id):
-    """Given *user_id*, return the associated User object.
-
-    :param unicode user_id: user_id (email) user to retrieve
-
-    """
-    return User.query.get(user_id)
 
 #RECAPTCHA_ENABLED = True
 #RECAPTCHA_SITE_KEY = "6Ld6aWYUAAAAAM00of-ydMGGFtzRoLMmwU8avCj4"
@@ -146,6 +111,11 @@ def user_loader(user_id):
             return True
         else:
             return False'''
+
+class SignupForm(FlaskForm):
+    recaptcha = RecaptchaField()
+    
+
 
 ''' Instantiation of class check boxes '''
 
@@ -244,7 +214,7 @@ def login():
     form = LoginForm()
     error = None
     if request.method == 'POST':
-        
+        print('cow')
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
         
@@ -254,9 +224,7 @@ def login():
         s = Session()
         query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
         result = query.first()
-        print(query)
-        print('query^')
-        print(result)
+     
         
         #if recaptcha.verify():
             #print('yes verify')
@@ -271,7 +239,7 @@ def login():
             
             #login_user(request.form['username'],remember=True,duration=200,force=False,fresh=True)
             
-            login_user(User,True)
+            #login_user(User,True)
             #login_user(user, remember=form.remember_me.data)
             #return redirect(url_for('post_home'))
             return render_template('index.html', form=form)

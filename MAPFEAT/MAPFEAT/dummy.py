@@ -10,13 +10,13 @@ engine = create_engine('sqlite:///userpass.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
  
-user = User("admin","password", True, True, True)
+user = User("manjeet.dev1@ucalgary.ca","password1")
 session.add(user)
  
-user = User("manjeet","boss",True, True, True)
+user = User("bob@hotmail.com","boss")
 session.add(user)
  
-user = User("jump","man",True, True, True)
+user = User("hello@yahoo.ca","man")
 session.add(user)
  
 # commit the record the database
