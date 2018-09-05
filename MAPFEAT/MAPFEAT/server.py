@@ -632,9 +632,8 @@ def ffroma():
                         str_col3 = str_col3.replace("]]","]")
                         str_col3 = str_col3.replace("'","")
                         str_col3 = str_col3.replace("[],","")
-
-
-                        dic[str_col1]=str_col3
+                        if str_col3 != '[]':
+                            dic[str_col1]=str_col3
             '''i=0
             print('DATA',data)
             Count_Row=data.shape[0]

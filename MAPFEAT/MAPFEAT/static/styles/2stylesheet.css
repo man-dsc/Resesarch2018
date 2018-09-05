@@ -95,7 +95,6 @@ div#loading {
     width: 50%;
     height: 50px;
     display: none;
-    /*background: url(/static/ajax-loader.gif) no-repeat; */
     cursor: wait;
     margin: auto;
     padding: 70px 0;

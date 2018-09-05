@@ -284,10 +284,17 @@ def search():
                     print('2 error')
             print("here")
             if num == 1 and '2' in On:
-                for app in apps:
-                    #print(app)
-                    for ap in app:
-                        writer.writerow([ap[0].encode('utf8'), ap[2].encode('utf8')])
+                try:
+                    if apps is not None:
+                        for app in apps:
+                            #print(app)
+                            for ap in app:
+                                try:
+                                    writer.writerow([ap[0].encode('utf8'), ap[2].encode('utf8')])
+                                except:
+                                    print('erooro')
+                except:
+                    print('3 error')
             num += 1
             #print(apps)
             '''for app in apps:
