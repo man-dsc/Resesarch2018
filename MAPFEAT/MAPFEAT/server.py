@@ -125,6 +125,8 @@ class parameters_2:
 parameters_2 = parameters_2(-1, -1, -1, -1)
 
 
+'''login form for recaptcha'''
+
 class LoginForm(FlaskForm):
     recaptcha = RecaptchaField()
 
@@ -285,6 +287,7 @@ def post_home():
     return render_template('post_login_home.html')
     
 
+'''new mapfeat search feature'''
 
 @app.route('/first', methods = ['GET', 'POST'])
 @login_required
@@ -309,7 +312,7 @@ def index():
 def permit(filename):
     return'.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS 
 
-''' Input Page '''
+''' Input Page for mapfeat'''
 @app.route('/inputs', methods = ['GET', 'POST'])
 @login_required
 def inputs():
@@ -431,7 +434,7 @@ def results_screen1():
 
 '''-------------------------------------------------------------'''
 
-''' Results Page '''
+''' Results Page for mapfeat'''
 @app.route('/results', methods = ['GET', 'POST'])
 @login_required
 def results():
@@ -493,7 +496,7 @@ def permit(filename):
     return'.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS 
     
 
-''' Error Page '''
+''' Error Page for wrong mapfeat inputs'''
 @app.route('/error', methods = ['GET', 'POST'])
 @login_required
 def error():
@@ -519,7 +522,7 @@ def home():
 
 
 
-''' About Page '''
+''' About Page (deleted) '''
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -531,14 +534,14 @@ def about():
 
 
 
-''' Contact Page '''
+''' Contact Page (deleted) '''
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
 
 
-''' Features CSV '''
+''' Features CSV final features'''
 @app.route('/features')
 @login_required
 def features():
@@ -559,7 +562,7 @@ def features():
 
     return render_template('finalizedfeatures.html', finallist = finallist, finallist2 = finallist2)
     
-
+''' different get plot for each name'''
 @app.route('/getPlotCSV4')
 @login_required
 def post4():
@@ -589,35 +592,8 @@ def ffroma():
     
     
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output/features'):
-        print('')
-        print('')
-        print('current path:', dirpath)
-        print('directories:', dirnames)
-        print('files:', filenames)
-        print('#2')
+        
         for filename in filenames:
-            print('')
-            print('')
-            print(dirpath)
-            print('-0----0----0-0-')
-            print(dirnames)
-            print(filenames)
-            print(filename)
-            
-            '''with open(dirpath + '/' + filename, mode='r') as csv_file:
-                csv_reader = csv.reader(csv_file)
-                read = []
-                print('working?')
-                for row in csv_reader:
-                    if len(row) !=0 :
-                        read = read + [row]
-                        
-                    'dict key = column 1 and dict value pair = list of column d' 
-                    'dic[column a] = [column d]'
-            csv_file.close()
-            
-            df = pd.DataFrame(read)
-            print(df)'''
             
             data = pd.read_csv(dirpath + '/' + filename)
             with open(dirpath + '/' + filename, 'r') as f:
@@ -634,19 +610,7 @@ def ffroma():
                         str_col3 = str_col3.replace("[],","")
                         if str_col3 != '[]':
                             dic[str_col1]=str_col3
-            '''i=0
-            print('DATA',data)
-            Count_Row=data.shape[0]
-            while (i < Count_Row):
-                print('ROW numbers', Count_Row)
-                column3 = data.iloc[i,2]
-                print(column3)
-                column1 = data.iloc[i,0]
-                'print(column1 , column3)'
-                print('this is number', i)
-                str_col1 = ''.join(column1)
-                dic[str_col1]=column3
-                i+=1'''
+            
     
 
     with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Apps.csv'), 'wb') as csv_file:
@@ -656,12 +620,7 @@ def ffroma():
             #writer.writerow(['',''])
             writer.writerow([key, value])
     
-    '''dataset = tablib.Dataset()
-    with open(os.path.join(app.config['OUTPUT_FOLDER'], 'Features_from_Apps.csv')) as f:
-        dataset.csv = f.read()
-        
-    return dataset.html'''
-    
+   
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output'):
         print('')
         print('')
@@ -720,15 +679,7 @@ def ffromq():
                     column3 = row[2]
                     str_col3 = ''.join(column3)
                     bigstr = bigstr + str_col3
-                '''if str_col1 in dic2:
-                    x=dic2.get(str_col1)
-                    bigstr = bigstr + x'''
-                    
-                '''^ dont need this, same features from both'''
-                #bigstr = bigstr.replace(", []","")
-                #str_col3 = str_col3.replace("[[","[")
-                #str_col3 = str_col3.replace("]]","]")
-                #str_col3 = str_col3.replace("'","")
+                
                 if bigstr != '[]':
                         #bigstr = bigstr.replace(", []",",")
                     bigstr = bigstr.replace("][","")
@@ -737,9 +688,6 @@ def ffromq():
                     bigstr = bigstr.replace("[[","[")
                     bigstr = bigstr.replace("]]","]")
                     bigstr = bigstr.replace("'","")
-                        #bigstr = bigstr.replace("[],","")
-                    #bigstr = bigstr.replace("[]","")
-                
                     dic2[str_col1]=bigstr
                 
                 
@@ -749,16 +697,11 @@ def ffromq():
         writer = csv.writer(csv_file)
         writer.writerow(['Search Query','Features'])
         for key, value in dic2.items():
-            #writer.writerow(['',''])
+            
             writer.writerow([key, value])
     
     for dirpath, dirnames, filenames in os.walk('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output'):
-        print('')
-        print('')
-        print('current path:', dirpath)
-        print('directories:', dirnames)
-        print('files:', filenames)
-        print('#3')
+        
 
     os.chdir('C:/Users/manjeet.dev1/Desktop/mapfeat_web_summer-2018/MAPFEAT/MAPFEAT/output')    
     file_reader = csv.reader(open('Features_from_Queeries.csv', 'rb'), delimiter=',')
